@@ -1,25 +1,25 @@
 baseurl: /
 languageCode: en-US
-title: NotBad Data
+title: Mean,Median&Me
 theme: "hugo-PaperMod"
 googleAnalytics: ''
 disqusShortname: ''
 
-enableRobotsTXT: true
-buildDrafts: false
-buildFuture: false
-buildExpired: false
+#enableRobotsTXT: true
+#buildDrafts: false
+#buildFuture: false
+#buildExpired: false
 
-minify:
-  disableXML: true
-  minifyOutput: true
+#minify:
+#  disableXML: true
+#  minifyOutput: true
 
 ignoreFiles:
   - \.Rmd$
   - \.Rmarkdown$
   - _cache$
-permalinks:
-  post: /:year/:month/:day/:slug/
+#permalinks:
+#  post: /:year/:month/:day/:slug/
 menu:
   main:
     - name: About
@@ -31,7 +31,7 @@ menu:
 
 params:
   env: production
-  title: NotBad DataAnalyses
+  title: MeanMedian&Me
   description: A website built through Hugo and blogdown (- a work in progress).
   keywords: [Blog, Portfolio]
   images: ["https://www.google.com/url?sa=i&url=https%3A%2F%2Fa-z-animals.com%2Fanimals%2Fgoose%2F&psig=AOvVaw2m49GkWbski3VIICcMngC2&ust=1687280807109000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKj96_roz_8CFQAAAAAdAAAAABAE"]
@@ -54,59 +54,66 @@ params:
   showtoc: false
   tocopen: false
   
-  assets:
-    # disableHLJS: true # to disable highlight.js
-    # disableFingerprinting: true
-    favicon: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.yahoo.com%2Flifestyle%2Fthink-leave-season-3-trailer-194518810.html&psig=AOvVaw1KWMKzYhL4RYQ_r7CQnQSm&ust=1687280909846000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJiwqKzpz_8CFQAAAAAdAAAAABAE"
-    
-  label:
-    text: "Home"
-    icon: /apple-touch-icon.png
-    iconHeight: 35
-    
   profileMode:
     enabled: false # needs to be explicitly set
-    title: ExampleSite
+    title: '<Title>'
     subtitle: "This is subtitle"
-    imageUrl: ""
+    imageUrl: /content/UN.jpeg/
     imageWidth: 120
     imageHeight: 120
     imageTitle: my image
     buttons:
-      - name: Posts
-        url: posts
-      - name: Tags
-        url: tags
+     - name: Posts
+       url: posts
+     - name: Tags
+       url: tags
 
   homeInfoParams:
-    Title: "Welcome to this website."
-    Content: It contains data analyses and dashboards on various topics of interest (eg movies and basketball) -- it's a work in progress.
-    
-  socialIcons:
-    - name: twitter
-      url: "https://twitter.com/"
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
-    - name: github
-      url: "https://github.com/"
-    - name: letterboxd
-      url: "https://letterboxd.com/"
-      
-  editPost:
+    Title: "Welcome to Mean,Median&Me."
+    Content: >
+            It's a work in progress.
+            
+            - All data analyses and projects shared on this website were made using R, including the website itself. The data I use is also usually scraped in R.      
+            
+           
+            - Expect to see analyses on movies and basketball analytics, but also other stuff hopefully.
+    editPost:
     URL: "https://github.com/ibenchekroun/my-second-website/tree/main/content"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
+  socialIcons:
+   - name: twitter
+     url: "https://twitter.com/"
+   - name: stackoverflow
+     url: "https://stackoverflow.com"
+   - name: github
+     url: "https://github.com/"
+   - name: letterboxd
+     url: "https://letterboxd.com/"
+
+# assets:
+    # disableHLJS: true # to disable highlight.js
+    # disableFingerprinting: true
+#   favicon: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.yahoo.com%2Flifestyle%2Fthink-leave-season-3-trailer-194518810.html&psig=AOvVaw1KWMKzYhL4RYQ_r7CQnQSm&ust=1687280909846000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJiwqKzpz_8CFQAAAAAdAAAAABAE"
+    
+label:
+  text: "Home"
+  icon: /apple-touch-icon.png
+  iconHeight: 35
+#    
+
+
   # for search
   # https://fusejs.io/api/options.html
-  fuseOpts:
-    isCaseSensitive: false
-    shouldSort: true
-    location: 0
-    distance: 1000
-    threshold: 0.4
-    minMatchCharLength: 0
-    keys: ["title", "permalink", "summary", "content"]
+#  fuseOpts:
+#    isCaseSensitive: false
+#    shouldSort: true
+#    location: 0
+#    distance: 1000
+#    threshold: 0.4
+#    minMatchCharLength: 0
+#    keys: ["title", "permalink", "summary", "content"]
 #menu:
 #  main:
 #    - identifier: categories
@@ -122,10 +129,10 @@ params:
 #      url: https://example.org
 #      weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
-  pygmentsUseClasses: true
-markup:
-  highlight:
-    noClasses: false
+#  pygmentsUseClasses: true
+#markup:
+#  highlight:
+#    noClasses: false
     # anchorLineNos: true
     # codeFences: true
     # guessSyntax: true

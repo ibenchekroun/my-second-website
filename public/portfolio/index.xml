@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Portfolio on Mean,Median&amp;Me</title>
+    <link>/portfolio/</link>
+    <description>Recent content in Portfolio on Mean,Median&amp;Me</description>
+    <image>
+      <title>Mean,Median&amp;Me</title>
+      <url>https://www.google.com/url?sa=i&url=https%3A%2F%2Fa-z-animals.com%2Fanimals%2Fgoose%2F&psig=AOvVaw2m49GkWbski3VIICcMngC2&ust=1687280807109000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKj96_roz_8CFQAAAAAdAAAAABAE</url>
+      <link>https://www.google.com/url?sa=i&url=https%3A%2F%2Fa-z-animals.com%2Fanimals%2Fgoose%2F&psig=AOvVaw2m49GkWbski3VIICcMngC2&ust=1687280807109000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKj96_roz_8CFQAAAAAdAAAAABAE</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 01 Jan 2023 19:47:09 +0200</lastBuildDate><atom:link href="/portfolio/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
