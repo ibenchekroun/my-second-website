@@ -8,7 +8,6 @@ techs:
 thumbnail: decision-maker/Fleabag.jpeg
 title: Automated NBA Player Scouting Report
 work:
-url: "analitty.shinyapps.io/UNdilemma/"
 cover:
     #image: /Fleabag.jpeg/ # image path/url
     #imageUrl: https://analitty.shinyapps.io/Scouting_Report/

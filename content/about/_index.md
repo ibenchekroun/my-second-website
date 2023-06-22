@@ -4,7 +4,7 @@ title: About
 
 My name is Ismail. I like finding meaning in things. 
 
-We learned at a young age that mean, median and mode are statistics that offer a quick way of deriving such meaning from large quantities of information. 
+We learn at a young age that mean, median and mode are ways of deriving such meaning from large quantities of information. 
 I think that's neat, but as we also learn at a young age, they have their problems. So I pursued an MSc in Statistics from the University of Toronto (graduated June 2023) to learn more.
 
 Having just recently scraped 26,999 movies’ IMDb data, I’m excited to dig in and share cool findings on [here](/post/). I also have data dashboard or app ideas every once in a while that I would add to the [portfolio](/portfolio/).
