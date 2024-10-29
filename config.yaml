@@ -162,3 +162,8 @@ label:
 #  goldmark:
 #    renderer:
 #      unsafe: yes
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
