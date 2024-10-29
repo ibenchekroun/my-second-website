@@ -1,11 +1,10 @@
 ---
-title: "Movie Runtimes"
-author: "Ismail Benchekroun"
-date: "2024-10-28"
-output:
-  html_document: default
-  pdf_document: default
-always_allow_html: true
+title: Movie Runtimes
+author: Ismail Benchekroun
+date: '2024-10-29'
+slug: are-movies-getting-longer
+categories: ["data analysis", "movies"]
+tags: ["Glen Powell"]
 ---
 
 ```{r setup, include=FALSE}

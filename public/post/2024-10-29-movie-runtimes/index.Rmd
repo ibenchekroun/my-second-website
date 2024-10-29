@@ -1,0 +1,12 @@
+---
+title: Movie Runtimes
+author: Ismail Benchekroun
+date: '2024-10-29'
+slug: movies-are-getting-longer
+categories:
+  - data analysis
+  - movies
+tags:
+  - Glen Powell
+---
+
