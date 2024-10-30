@@ -743,7 +743,7 @@ On the contrary, the top box office performers are the films people specifically
 ```{r, echo = FALSE}
 #     transposed_df %>% as.data.frame() %>% kable()
 # xtable(transposed_df)
-kable(transposed_df, format = "html", table.attr = "style='width:50%;'", caption = "Table 1: Movie Runtimes of the 20 Highest Grossers of 2002 vs 2022") %>% 
+kable(transposed_df, format = "html", table.attr = "style='width:50%;'", caption = "Movie Runtimes of the 20 Highest Grossers of 2002 vs 2022") %>% 
   kableExtra::kable_styling()
 ```
 
@@ -826,7 +826,7 @@ filtered_data6_bud <- filter_data_ba_fn(before_year1,
 ```{r, echo = FALSE}
 #     transposed_df %>% as.data.frame() %>% kable()
 # xtable(transposed_df)
-kable(transposed_df, format = "html", table.attr = "style='width:60%;'", caption = "Table 2: Movie Runtimes of the 21st-40th Highest Grossers of 2002 vs 2022") %>% 
+kable(transposed_df, format = "html", table.attr = "style='width:60%;'", caption = "Movie Runtimes of the 21st-40th Highest Grossers of 2002 vs 2022") %>% 
   kableExtra::kable_styling()
 ```
 
@@ -929,7 +929,7 @@ filtered_data6 <- filter_data_ba_fn(before_year1,
 
 
 ```{r, echo = FALSE}
-kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Table 3: Movie Runtimes of the yearly Top 50 Highest Budget films --- 2009-2015 vs 2016-2022 (excluding 2020)") %>% 
+kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Movie Runtimes of the yearly Top 50 Highest Budget films --- 2009-2015 vs 2016-2022 (excluding 2020)") %>% 
   kableExtra::kable_styling()
 ```
 
@@ -1157,7 +1157,7 @@ filtered_data6 <- filter_data_ba_fn(before_year1,
 
 
 ```{r, echo = FALSE}
-kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Table 3: Movie Runtimes of the yearly Top 50 Highest Budget films of 2009-2015 vs 2016-2022 (excluding 2020)") %>% 
+kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Movie Runtimes of the yearly Top 50 Highest Budget films of 2009-2015 vs 2016-2022 (excluding 2020)") %>% 
   kableExtra::kable_styling()
 ```
 
@@ -1227,7 +1227,7 @@ filtered_data6 <- filter_data_ba_fn(before_year1,
 
 
 ```{r, echo = FALSE}
-kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Table 4: Movie Runtimes of the yearly 51st-100th Highest Budget films of 2009-2015 vs 2016-2022 (excluding 2020)") %>%
+kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Movie Runtimes of the yearly 51st-100th Highest Budget films of 2009-2015 vs 2016-2022 (excluding 2020)") %>%
   kableExtra::kable_styling()
 ```
 
@@ -1296,7 +1296,7 @@ original_df <- filtered_data6_3a %>%
 ```
 
 ```{r, echo = FALSE}
-kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Table 5: Movie Runtimes of the top 50 highest budget Action films --- 2009-2015 vs 2016-2022 (excluding 2020)") %>%
+kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Movie Runtimes of the top 50 highest budget Action films --- 2009-2015 vs 2016-2022 (excluding 2020)") %>%
   kableExtra::kable_styling()
 ```
 
@@ -1364,7 +1364,7 @@ original_df <- filtered_data6_3b %>%
 ```
 
 ```{r, echo = FALSE}
-kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Table 6: Movie Runtimes of the top 50 highest budget non-Action Comedy films --- 2009-2015 vs 2016-2022 (excluding 2020)") %>%
+kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Movie Runtimes of the top 50 highest budget non-Action Comedy films --- 2009-2015 vs 2016-2022 (excluding 2020)") %>%
   kableExtra::kable_styling()
 ```
 
@@ -1716,7 +1716,7 @@ original_df <- filtered_data_gg %>%
 ```
 
 ```{r, echo = FALSE}
-kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Table 7: Movie Runtimes of the top 50 highest budget Action vs non-Action Comedy films --- 2009-2015") %>%
+kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Movie Runtimes of the top 50 highest budget Action vs non-Action Comedy films --- 2009-2015") %>%
   kableExtra::kable_styling()
 ```
 
@@ -1810,6 +1810,6 @@ original_df <- filtered_data_gg %>%
 ```
 
 ```{r, echo = FALSE}
-kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Table 8: Movie Runtimes of the 1-50 highest grossing vs 51-100 highest grossing films --- 2009-2015") %>%
+kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Movie Runtimes of the 1-50 highest grossing vs 51-100 highest grossing films --- 2009-2015") %>%
   kableExtra::kable_styling()
 ```
