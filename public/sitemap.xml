@@ -2,32 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/</loc>
-    <lastmod>2023-01-01T19:47:09+02:00</lastmod>
+    <loc>https://meanmedianandme.netlify.app/</loc>
+    <lastmod>2024-10-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url><url>
-    <loc>/portfolio/scouting_report/</loc>
+    <loc>https://meanmedianandme.netlify.app/post/</loc>
+    <lastmod>2024-10-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://meanmedianandme.netlify.app/post/movie-runtimes/</loc>
+    <lastmod>2024-10-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://meanmedianandme.netlify.app/portfolio/scouting_report/</loc>
     <lastmod>2023-01-01T19:47:09+02:00</lastmod>
   </url><url>
-    <loc>/portfolio/</loc>
+    <loc>https://meanmedianandme.netlify.app/portfolio/</loc>
     <lastmod>2023-01-01T19:47:09+02:00</lastmod>
   </url><url>
-    <loc>/post/</loc>
+    <loc>https://meanmedianandme.netlify.app/post/imdb-review-bombing/</loc>
     <lastmod>2022-09-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/imdb-review-bombing/</loc>
-    <lastmod>2022-09-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/portfolio/hindsight2022/</loc>
+    <loc>https://meanmedianandme.netlify.app/portfolio/hindsight2022/</loc>
     <lastmod>2022-01-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/analitty.shinyapps.io/undilemma/</loc>
+    <loc>https://meanmedianandme.netlify.app/analitty.shinyapps.io/undilemma/</loc>
     <lastmod>2021-03-25T19:47:09+02:00</lastmod>
   </url><url>
-    <loc>/about/</loc>
+    <loc>https://meanmedianandme.netlify.app/about/</loc>
   </url><url>
-    <loc>/categories/</loc>
+    <loc>https://meanmedianandme.netlify.app/categories/</loc>
   </url><url>
-    <loc>/tags/</loc>
+    <loc>https://meanmedianandme.netlify.app/tags/</loc>
   </url>
 </urlset>

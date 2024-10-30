@@ -1,0 +1,901 @@
+---
+title: "Movie Runtimes"
+author: "Ismail Benchekroun"
+date: '2024-10-29'
+output:
+  html_document: default
+  pdf_document: default
+always_allow_html: true
+---
+
+<script src="{{< blogdown/postref >}}index_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index_files/lightable/lightable.css" rel="stylesheet" />
+<link href="{{< blogdown/postref >}}index_files/htmltools-fill/fill.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="{{< blogdown/postref >}}index_files/plotly-binding/plotly.js"></script>
+<script src="{{< blogdown/postref >}}index_files/typedarray/typedarray.min.js"></script>
+<script src="{{< blogdown/postref >}}index_files/jquery/jquery.min.js"></script>
+<link href="{{< blogdown/postref >}}index_files/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/crosstalk/js/crosstalk.min.js"></script>
+<link href="{{< blogdown/postref >}}index_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/plotly-main/plotly-latest.min.js"></script>
+
+
+<!-- ```{r} -->
+<!-- data %>% -->
+<!--   filter(Title %>% str_detect("When Harry Met Sally|10 Things |Forgetting Sarah |You've Got Mail|Pretty Woman|Crazy, Stupid|13 Going on |40 Year|Knocked Up|Crazy Rich|Notting Hill|Five-Year|Something About Mary|Clueless|Bridget Jones's Diary|Along Came Polly|Wedding Singer|Moonstruck")) %>% -->
+<!--   select(Title_Year, IMDB_rating, Metascore_rating) %>% View() -->
+<!-- data %>%  -->
+<!--   filter(Actors %>% str_detect("Nicolas Cage"), Genres %>% str_detect("Comedy"), Genres %>% str_detect("Romance"))%>% -->
+<!--   select(Title_Year, IMDB_rating, Metascore_rating, Genres) %>% View() -->
+<!-- ``` -->
+<!-- ## UTILS -->
+<!-- ## DEFINING BEFORE AND AFTER -->
+<!-- ## DEFINING Group A AND Group B -->
+<!-- ## BEFORE VS AFTER  -->
+<p>A <a href="https://www.vanityfair.com/hollywood/2023/07/why-are-movies-sooooo-long-an-investigation">Vanity Fair article</a> from last year compared the top twenty US box office performers of 2022 to those of 2002. He found that, on average, the 2022 films were 13 minutes longer than the 2002 films. Maybe those years seem arbitrarily chosen, and the twenty movie sample size is a little small for your taste, but to me the statistic was a nice illustration of how popular movies may have changed in a twenty-year period. To the writer, however, it meant that “moviegoers had to sit through” an additional 13 minutes of screentime, as though we have no say in the movie theater tickets we buy.</p>
+<p>On the contrary, the top box office performers are the films people specifically chose to watch over all others. Who knows how long the non-highest grossing films were? They very well might have been shorter! As Table 2 below shows us, the next twenty greatest box office performers (21-40) i) are shorter in runtime than the first twenty, and ii) see a decrease in average runtime from 2002 to 2022. If anything, the more valid takeaway is that filmmakers had to produce an additional 13 minutes of footage to keep audiences interested than the other way around.</p>
+<table style="width:50%; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<span id="tab:unnamed-chunk-8">Table 1: </span>Table 1: Movie Runtimes of the 20 Highest Grossers of 2002 vs 2022
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Before (2002)
+</th>
+<th style="text-align:left;">
+After (2022)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Number of Movies
+</td>
+<td style="text-align:left;">
+20
+</td>
+<td style="text-align:left;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shortest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+81
+</td>
+<td style="text-align:left;">
+87
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+116.0
+</td>
+<td style="text-align:left;">
+129.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+110.5
+</td>
+<td style="text-align:left;">
+125.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Longest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+179
+</td>
+<td style="text-align:left;">
+192
+</td>
+</tr>
+</tbody>
+</table>
+<table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<span id="tab:unnamed-chunk-10">Table 2: </span>Table 2: Movie Runtimes of the 21st-40th Highest Grossers of 2002 vs 2022
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Before (2002)
+</th>
+<th style="text-align:left;">
+After (2022)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Number of Movies
+</td>
+<td style="text-align:left;">
+20
+</td>
+<td style="text-align:left;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shortest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+83
+</td>
+<td style="text-align:left;">
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+114.3
+</td>
+<td style="text-align:left;">
+113.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+116
+</td>
+<td style="text-align:left;">
+109
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Longest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+167
+</td>
+<td style="text-align:left;">
+139
+</td>
+</tr>
+</tbody>
+</table>
+<p>This passive framing of moviegoers (of us) that accompanies the “movies are getting longer” discourse is what urks me. Even industry insiders are guilty of it, as producer David T. Friendly (Little Miss Sunshine) voiced his frustrations <a href="https://puck.news/shorter-movies-please/">online</a> over the length of recent Oscar-nominated movies and called for filmmakers to trim their movies. He obviously knows the industry more than I do, but why point to the filmmakers while not asking anything of the Academy members (himself included) who nominated long films over shorter ones (e.g. <a href="https://www.imdb.com/title/tt21027780/">Fallen Leaves</a>, <a href="https://www.imdb.com/title/tt21192142/">All of Us Strangers</a>, <a href="https://www.imdb.com/title/tt17527468/">Bottoms</a>, etc.)? Asking for longer movies to be shortened when we are not even watching or rewarding the shorter ones feels hypocritical, to say the least.</p>
+<p>Since I take issue with others’ interpretations on movie runtime data and I have 26K rows of scraped IMDb data sitting in my laptop, why not explore the topic myself.</p>
+<div id="questions-of-interest" class="section level3">
+<h3>Questions of Interest</h3>
+<p><font size="2"> The question “are movies getting longer?” could use some refining. The more precise question I’ll be answering is: <strong>do mainstream movies now have a greater runtime than before?</strong></p>
+<p>Confession: I don’t care about movie runtime in itself. To me, an increase in runtime would merely be a symptom of a deeper, more conscious change in Hollywood. One such change I wish to explore is the <a href="https://www.cnn.com/2022/02/26/entertainment/mid-budget-movie-decline-cec/index.html">decline of mid-budget movies</a>, and mid-budget comedies in particular. Another recent trend is all the superheroes and I.P.-based Action movies that have dominated theater screens since the advent of the MCU. If the Comedies are shorter in runtime than the Action movies - which they are - then a drop in Comedy and rise in Action among mainstream movies would naturally result in an increase in runtime. So, <strong>are Action movies now more present among mainstream movies than before? Are Comedies now less present among mainstream movies than before? Also, have Action and Comedy movies gotten longer?</strong> Whatever changes are found, they must not have come from a vacuum. Box office successes (and failures) of the past are likely to have informed recent movie studio decision-making, leading me to also ask: <strong>Before, were Action movies more present among mainstream movies than Comedy movies? Were Action movies longer than Comedy movies?</strong></p>
+<p>Finally, since the blockbuster and mid-budget films are mentioned to have evolved differently from each other, the analysis is conducted on the two groups separately. The final list of questions asked is thus: </font></p>
+<div id="q1" class="section level4">
+<h4>1. Are movies getting longer</h4>
+<ol style="list-style-type: lower-alpha">
+<li>Are blockbusters getting longer? <font size="1"> Skip to <a href="#id_1a">Result</a>. </font></li>
+<li>Are mid-budget movies getting longer? <font size="1"> Skip to <a href="#id_1b">Result</a>. </font></li>
+<li>Are Action movies getting longer? <font size="1"> Skip to <a href="#id_1c">Result</a>. </font></li>
+<li>Are non-Action Comedy movies getting longer? <font size="1"> Skip to <a href="#id_1d">Result</a>. </font></li>
+</ol>
+</div>
+<div id="q2" class="section level4">
+<h4>2. Are longer movie types becoming more common than before, and shorter movie types less common</h4>
+<ol style="list-style-type: lower-alpha">
+<li>Are Action movies more present among Blockbusters now than before? <font size="1"> Skip to <a href="#id_2a">Result</a>. </font></li>
+<li>are non-Action Comedies less present among Blockbusters now than before? <font size="1"> Skip to <a href="#id_2b">Result</a>. </font></li>
+<li>Are Action movies more present among mid-Budget movies now than before? <font size="1"> Skip to <a href="#id_2c">Result</a>. </font></li>
+<li>are non-Action Comedies less present among mid-Budget movies now than before? <font size="1"> Skip to <a href="#id_2d">Result</a>. </font></li>
+</ol>
+</div>
+<div id="q3" class="section level4">
+<h4>3. Before — what movies were preferred and how long were they</h4>
+<ol style="list-style-type: lower-alpha">
+<li>Among top box office performers, Were Action movies more present than non-Action Comedies? <font size="1"> Skip to <a href="#id_3a">Result</a>. </font></li>
+<li>Among mid box office performers, Were Action movies more present than non-Action Comedies? <font size="1"> Skip to <a href="#id_3b">Result</a>. </font></li>
+<li>Were Action movies longer than non-Action Comedies? <font size="1"> Skip to <a href="#id_3c">Result</a>. </font></li>
+<li>Were the top box office performers longer than the mid box office performers? <font size="1"> Skip to <a href="#id_3d">Result</a>. </font></li>
+</ol>
+<p>To learn how certain parameters were defined, explanation <a href="#settingparameters">here</a>.</p>
+</div>
+</div>
+<div id="results" class="section level3">
+<h3>Results</h3>
+<p><font size="3"></p>
+<ul>
+<li>Blockbuster Movies got 6 minutes longer: The <strong>biggest budget films of each year did get longer, on average, by 6 minutes.</strong></li>
+</ul>
+<table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<span id="tab:unnamed-chunk-12">Table 3: </span>Table 3: Movie Runtimes of the yearly Top 50 Highest Budget films — 2009-2015 vs 2016-2022 (excluding 2020)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Before (2009-2015)
+</th>
+<th style="text-align:left;">
+After (2016-2022)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Number of Movies
+</td>
+<td style="text-align:left;">
+350
+</td>
+<td style="text-align:left;">
+300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shortest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+81
+</td>
+<td style="text-align:left;">
+82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+115.1
+</td>
+<td style="text-align:left;">
+121.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+113
+</td>
+<td style="text-align:left;">
+118
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Longest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+180
+</td>
+<td style="text-align:left;">
+242
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Mid-Budget Movies barely got longer: These movies saw a slight increase of 2 minutes in average runtime.</li>
+</ul>
+<!-- In 2009-2015, The yearly fifty  **highest grossing films were 6 minutes longer than the fifty next-highest grossing movies** , on average. The  **first 50 had more Action**  movies than non-Action Comedies (45% vs 33%) whereas the  **next 50 had fewer Action**  movies than non-Action Comedies. -->
+<ul>
+<li>Current Action vs Comedy trends:
+<ul>
+<li>Action: Studios now make <strong>5% more Blockbuster</strong> and <strong>5% more Mid-Budget</strong> movies that are Action than before (62% vs 57% and 38% vs 33%).</li>
+<li>Non-Action Comedy: Studios now make <strong>7% fewer Blockbuster</strong> and <strong>9% fewer Mid-Budget</strong> movies that are non-Action Comedies than before. This means the Mid-Budget movies went from having as many Action movies as non-Action Comedies in 2009-2015 to having 14% more Action movies than non-Action Comedies in 2016-2022.</li>
+<li><strong>Movie types themselves are getting longer</strong>: Action movies are 6 minutes longer now and non-Action Comedies are 3 minutes longer, on average.</li>
+</ul>
+<!-- **Rise of big Action Movies (and fall of big Non-Action Comedies)**  : More Action movies are among both Blockbusters and Mid-Budget movies now than before (62% vs 57% and 38% vs 33%). Conversely, the non-Action Comedies fell among both budget groups (28% vs 21% and 33% to 24%). This means the Mid-Budget movies went from having as many Action movies as non-Action Comedies in 2009-2015 to having 14% more Action movies than non-Action Comedies in 2016-2022.  --></li>
+</ul>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1" style="width:100%;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"data":[{"orientation":"v","width":0.44999999999999996,"base":0,"x":[0.77500000000000002],"y":[32.859999999999999],"text":"Movie Type: Comedy<br />Percentage: 32.86<br />Group: Before (2009-2015)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,0,139,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Before (2009-2015)","legendgroup":"Before (2009-2015)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.45000000000000018,"base":0,"x":[1.2250000000000001],"y":[25.329999999999998],"text":"Movie Type: Comedy<br />Percentage: 25.33<br />Group: After (2016-2022)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(184,134,11,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"After (2016-2022)","legendgroup":"After (2016-2022)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.44999999999999996,"base":0,"x":[0.77500000000000002],"y":[32.859999999999999],"text":"Movie Type: Action<br />Percentage: 32.86<br />Group: Before (2009-2015)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,0,139,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Before (2009-2015)","legendgroup":"Before (2009-2015)","showlegend":true,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.45000000000000018,"base":0,"x":[1.2250000000000001],"y":[37.329999999999998],"text":"Movie Type: Action<br />Percentage: 37.33<br />Group: After (2016-2022)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(184,134,11,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"After (2016-2022)","legendgroup":"After (2016-2022)","showlegend":true,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"xaxis":{"domain":[0,0.46000000000000002],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,1.6000000000000001],"tickmode":"array","ticktext":["Comedy"],"tickvals":[1],"categoryorder":"array","categoryarray":["Comedy"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Genre","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"xaxis2":{"domain":[0.54000000000000004,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,1.6000000000000001],"tickmode":"array","ticktext":["Action"],"tickvals":[1],"categoryorder":"array","categoryarray":["Action"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Genre","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2,42],"tickmode":"array","ticktext":["0","10","20","30","40"],"tickvals":[0,10,20,30,40],"categoryorder":"array","categoryarray":["0","10","20","30","40"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"%","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"annotations":[],"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.46000000000000002,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.54000000000000004,"x1":1,"y0":0,"y1":1}],"images":[],"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":37.260273972602747},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":"% of Mid-Budget movies that are Comedy and Action","showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Group","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"attrs":{"d2445a367e1":{"x":{},"y":{},"fill":{},"type":"bar"},"d2427c3b54a":{"x":{},"y":{},"fill":{},"type":"bar"}},"source":"A","config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"subplot":true,"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li>Past Moviegoer Preferences:
+<ul>
+<li>Highest-grossing movies were <strong>6 minutes longer</strong> than the next-highest-grossing movies.</li>
+<li>Highest-grossing movies had <strong>more Action flicks than non-Action Comedies</strong> (45% vs 33%).</li>
+<li>Next-highest grossing movies had <strong>fewer Action flicks than non-Action Comedies</strong> (28% vs 38%).</li>
+</ul></li>
+</ul>
+<p></font></p>
+</div>
+<div id="limitations" class="section level3">
+<h3>Limitations</h3>
+<div id="generalizing-blockbuster-and-mid-budget-films" class="section level4">
+<h4>Generalizing Blockbuster and Mid-Budget films</h4>
+<p>The fifty highest budget and the next fifty highest budget films are grouped as Blockbuster and Mid-Budget films, respectively, even though there could be high variation in budget within the two groups. Second, the variation itself may change over time, meaning the fifty highest budget films could represent a different proportion of Hollywood expenses in 2009 than in 2016. That is, if a movie studio’s strategy changes from making a few midsize movies per year to one huge movie, then perhaps the definition for a Blockbuster should change accordingly and cover fewer movies now than before.</p>
+</div>
+<div id="gentypes" class="section level4">
+<h4>Generalizing movie types</h4>
+<p>My way of defining movie types (Action and Non-Action Comedy) was broad. The comedies considered in our analysis range from slapstick comedies like <a href="https://www.imdb.com/title/tt1114740/">Paul Blart: Mall Cop</a> to <a href="https://www.imdb.com/title/tt6966692/">Oscar-bait comedic dramas</a>. Surely these are not the same type of movie. Even Action encompasses a variety of films, from <a href="https://www.imdb.com/title/tt1985949/">The Angry Birds Movie</a> to <a href="https://www.imdb.com/title/tt5013056/">Dunkirk</a> to <a href="https://www.imdb.com/title/tt6095472/">The Angry Birds Movie 2</a>.</p>
+</div>
+<div id="bigger-budget-does-not-necessarily-mean-theatrical-release" class="section level4">
+<h4>Bigger budget does not necessarily mean theatrical release</h4>
+<p>My assumption that higher budget movies are more likely to play in theaters may not hold for all movies, especially in today’s streaming era. This was made evident by a <a href="https://www.hollywoodreporter.com/movies/movie-features/glen-powell-interview-hit-man-movie-texas-move-1235905159/">Hollywood Reporter article</a>, in which actor Glen Powell is quoted saying he and <a href="https://www.imdb.com/title/tt26047818/">Anyone But You (2023)</a> co-star and producer Sydney Sweeney turned down bigger budgets from streamers in order to give their romantic comedy a proper theatrical release.</p>
+</div>
+<div id="no-2023-data" class="section level4">
+<h4>No 2023 Data</h4>
+<p>The most recent data I have is of 2022, meaning I’m missing a full year of the most recent movies (2023). One year doesn’t sound so bad, but the analysis is meant to explore a recent trend so it would’ve been nice to have the most recent data.</p>
+</div>
+</div>
+<div id="dashboard-plug" class="section level3">
+<h3>Dashboard Plug</h3>
+<p>The results of the analysis are specific to how Blockbuster and Mid-Budget films were defined, and to the time periods used for the ‘Before’/‘After’ analysis. Other approaches to a movie runtime investigation could be perfectly valid, which is why I built a dashboard letting you explore the IMDb movie runtime data how you wish. With the tool, you can see how movie runtime varies over time and by genre or production company. You can filter the movies based on release year, budget, box office gross, director and other characteristics. Please note, however, that as in any analysis, the movies you’re including (or excluding) should affect your interpretations accordingly. All the plots and tables in this post were produced using the dashboard linked here.</p>
+</div>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<div id="comedies-and-action-ficks" class="section level4">
+<h4>Comedies and Action ficks</h4>
+<p>They were never the biggest box office performers, but comedies performed nonetheless. They were even more common among mid-budget films than Action movies were. This is no longer the case, as the 2+ hour MCU, DCU, Kong, Jumanji, and all other Action-y franchises became an even bigger part of the recent years’ mainstream films.</p>
+<p>These findings are consistent with the idea that studios are relying on superheroes and other I.P.-based “amusement park” movies to draw us out from our streaming services-infused homes. Streaming services, as <a href="https://virginradio.co.uk/entertainment/133533/matt-damon-blames-streaming-decline-quality-bad-films">Matt Damon explains</a>, also led to the death of DVD sales and rentals, which had provided production companies a considerable extra cushion of revenue. If the convenience of at-home, on-demand entertainment and lack of DVD revenue leads production companies to adopt a “go big or go home” strategy for theater releases, then they might think to double down on the highest grossing movie types, which we saw were Action more than Comedy in 2009-2015. And since these Action films are generally longer than Comedies, then it makes sense mainstream movies are seeing an increase in runtime.</p>
+<p>In addition, though, Action films themselves are getting longer in runtime - also by a 6 minutes average. One explanation is related to the <a href="#gentypes">second limitation</a>: there are various subtypes of Action movies, so perhaps longer-running subtypes have become more frequent than before, thereby increasing the average runtime for all Action movies. Post-credit scenes, which are now a commonplace element of franchise movies, may also be responsible for a small increase in average runtime.</p>
+<!-- The addition of post-credit scenes in almost every franchise movie now might account for a portion of that increase, but I'm sure there is more at play here.   -->
+<!-- Another explanation is given by David T. Friendly in his aforementioned online [plea](https://puck.news/shorter-movies-please/) for shorter movies: streamers, who care more about time spent on their platform than the number of daily showtimes, don't hate extra-long movies like theater owners do.  -->
+<!-- One explanation for this is related to the last limitation: Action movies include more than the “amusement park” films, and so the longer average runtime can come from an increased presence of a longer subtype (similar logic as saying mainstream movies are getting longer because more of them are Action now).  -->
+<!-- ### Tangent: Streamers are Scary -->
+<!-- Clearly, streaming services play a role (both direct and indirect) in what films we get to see within reasonable access, and that’s worrisome!  Netflix’s use of an algorithm to inform its TV programming is scary. It wasn’t scary when Netflix would give artists a platform to make fun, original comedy specials like Chelsea Peretti: One of the Greats, but it *is* scary when Netflix decides to remove one of their very first “Netflix Original” comedy specials, Chelsea Peretti: One of the Greats, from their platform. The special was even wiped from the Netflix stand up specials wikipedia page. https://en.wikipedia.org/wiki/List_of_Netflix_original_stand-up_comedy_specials  -->
+</div>
+</div>
+<div id="closing-thoughts" class="section level3">
+<h3>Closing thoughts</h3>
+<p>We used to be a country that watched 100-minute-long Comedy movies in a Cineplex Odeon theater. From 2009 to 2015, we had two Grown Ups and three Hangover films grace our cinemas, all of which were between 100 and 102 minutes in runtime, and made $200 to $550 million each. The year 2011 saw two Rom Coms called No Strings Attached and Friends with Benefits grace our theaters; they shared the same exact premise and yet both grossed $150 million worldwide each. Now, Adam Sandler movies go straight to <a href="https://www.indiewire.com/features/general/adam-sandler-netflix-deal-extended-four-movies-1202207433/">Netflix</a>, The Hangover director is onto his second Joker film, and Romantic Comedies… go straight to <a href="https://www.imdb.com/title/tt7374948/">Netflix</a> (or <a href="https://www.imdb.com/title/tt15218000/">Hulu</a>, <a href="https://www.imdb.com/title/tt6462958/">Prime</a>, and so on).</p>
+<p>Can non-Action movies make a theatrical comeback? According to a <a href="https://www.thecinemafoundation.org/wp-content/uploads/2023/03/State-of-the-Cinema-Industry-March-2023.pdf">survey</a> conducted by The Cinema Foundation, people want to watch more comedies in theaters. Anyone But You’s box office success is evidence of this sentiment, and we’ve since seen <a href="https://www.worldofreel.com/blog/2024/10/24/wuthering-heights">other producers</a> choose theatrical releases over a big Netflix cheque. Moreover, in his Academy Award acceptance speech for writing <a href="https://www.imdb.com/title/tt23561236/">American Fiction</a>, Cord Jefferson called out studios’ blockbuster-obsessed nature and advocated “Instead of making one $200 million movie, try making 10 $20 million movies”. He was met with applause but who knows how earnest. In the meantime, we can go out and enjoy one of the fewer - but still present - <a href="https://www.imdb.com/search/title/?title_type=feature&amp;release_date=2024-01-01,&amp;runtime=1,100&amp;now_playing=restrict&amp;sort=boxoffice_gross_us,asc">shorter movies released in theaters</a>. Maybe you can watch two since they’re so short.</p>
+</div>
+<div id="appendix" class="section level3">
+<h3>Appendix</h3>
+<div id="settingparameters" class="section level4">
+<h4>A1: Defining ‘Mainstream’, distinguishing between ‘Mid-Budget’ and ‘Blockbuster’, and choosing our ‘Before’ and ‘Now’ periods</h4>
+<div id="mainstream" class="section level6">
+<h6>Mainstream</h6>
+<p>I’d consider mainstream movies to be the most accessible to the average moviegoer. The IMDb-provided variable that is most related to accessibility (in my opinion) is movie budget. That is, the greater the budget of a movie, the more I’d expect it to be given a wide theatrical release and be part of “the mainstream culture”. Since there are about 100 movies released in theaters per year (according to <a href="https://www.statista.com/statistics/1400581/number-movies-released-theaters-us-canada/">statista</a>), I define mainstream movies as those among the top 100 budget films of their given release year.</p>
+</div>
+<div id="blockbuster-vs-mid-budget" class="section level6">
+<h6>Blockbuster vs Mid-Budget</h6>
+<p>To obtain an even split from the 100 Mainstream movies, I define the top 50 budget films of each year as Blockbuster films and the next 50 as Mid-Budget films. That is, for every year considered in the analysis, the hundred movies with the highest budgets will be included. Of those hundred, the fifty with the highest budget will be treated as Blockbusters and the remaining fifty will be treated as Mid-Budget.</p>
+</div>
+<div id="before-and-now" class="section level6">
+<h6>‘Before’ and ‘Now’</h6>
+<p>The ‘Before’ period is set to be the years 2009 to 2015. I think these years represent the start of the MCU, from their very first hit in <a href="https://www.imdb.com/title/tt0371746/">Iron Man (2009)</a> (126 minutes) to their first <a href="https://www.imdb.com/title/tt0848228/">Avengers</a> <a href="https://www.imdb.com/title/tt2395427/">films</a> (143 and 141 minutes, respectively) in which standalone characters crossed over with each other, grossing billions of dollars and solidifying the ‘Universe’. This time also covers Netflix’s rise in popularity, and the start of streaming services original programming (which was both <a href="https://www.imdb.com/title/tt1856010/">popular</a> and <a href="https://www.imdb.com/title/tt3502262/">critically acclaimed</a>). The ‘Now’ period is 2016 to 2022, with 2020 excluded due to the outlier-like impact COVID-19 had on film that year. This era saw the <a href="https://www.imdb.com/title/tt4154796/">peak of the MCU</a> (181 minutes), the advent of so many other <a href="https://www.imdb.com/title/tt1985949/">I.P.-based</a> <a href="https://www.imdb.com/title/tt3794354/">movie</a> <a href="https://www.imdb.com/title/tt5034838/">universes</a>, and the ubiquity of streaming services.</p>
+</div>
+</div>
+<div id="a2-results-by-question" class="section level4">
+<h4>A2: Results by question</h4>
+<div id="are-movies-getting-longer" class="section level5">
+<h5>1. Are Movies Getting Longer</h5>
+<div id="id_1a" class="section level6">
+<h6>a) Are blockbusters getting longer?</h6>
+<p><font size = "1"> Back to <a href="#q1">the questions</a>. </font></p>
+<table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<span id="tab:unnamed-chunk-15">Table 4: </span>Table 3: Movie Runtimes of the yearly Top 50 Highest Budget films of 2009-2015 vs 2016-2022 (excluding 2020)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Before (2009-2015)
+</th>
+<th style="text-align:left;">
+After (2016-2022)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Number of Movies
+</td>
+<td style="text-align:left;">
+350
+</td>
+<td style="text-align:left;">
+300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shortest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+81
+</td>
+<td style="text-align:left;">
+82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+115.1
+</td>
+<td style="text-align:left;">
+121.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+113
+</td>
+<td style="text-align:left;">
+119
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Longest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+180
+</td>
+<td style="text-align:left;">
+242
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="id_1b" class="section level6">
+<h6>b) Are mid-budget movies getting longer?</h6>
+<p><font size = "1"> Back to <a href="#q1">the questions</a>. </font></p>
+<table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<span id="tab:unnamed-chunk-17">Table 5: </span>Table 4: Movie Runtimes of the yearly 51st-100th Highest Budget films of 2009-2015 vs 2016-2022 (excluding 2020)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Before (2009-2015)
+</th>
+<th style="text-align:left;">
+After (2016-2022)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Number of Movies
+</td>
+<td style="text-align:left;">
+350
+</td>
+<td style="text-align:left;">
+300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shortest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+63
+</td>
+<td style="text-align:left;">
+78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+109.9
+</td>
+<td style="text-align:left;">
+111.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+108.0
+</td>
+<td style="text-align:left;">
+109.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Longest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+181
+</td>
+<td style="text-align:left;">
+178
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="id_1c" class="section level6">
+<h6>c) Are Action movies getting longer?</h6>
+<p><font size = "1"> Back to <a href="#q1">the questions</a>. </font></p>
+<table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<span id="tab:unnamed-chunk-19">Table 6: </span>Table 5: Movie Runtimes of the top 50 highest budget Action films — 2009-2015 vs 2016-2022 (excluding 2020)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Before (2009-2015)
+</th>
+<th style="text-align:left;">
+After (2016-2022)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Number of Movies
+</td>
+<td style="text-align:left;">
+350
+</td>
+<td style="text-align:left;">
+300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shortest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+79
+</td>
+<td style="text-align:left;">
+78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+113.4
+</td>
+<td style="text-align:left;">
+118.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+111
+</td>
+<td style="text-align:left;">
+117
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Longest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+165
+</td>
+<td style="text-align:left;">
+242
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="id_1d" class="section level6">
+<h6>d) Are Comedy movies getting longer?</h6>
+<p><font size = "1"> Back to <a href="#q1">the questions</a>. </font></p>
+<table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<span id="tab:unnamed-chunk-21">Table 7: </span>Table 6: Movie Runtimes of the top 50 highest budget non-Action Comedy films — 2009-2015 vs 2016-2022 (excluding 2020)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Before (2009-2015)
+</th>
+<th style="text-align:left;">
+After (2016-2022)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Number of Movies
+</td>
+<td style="text-align:left;">
+350
+</td>
+<td style="text-align:left;">
+300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shortest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+63
+</td>
+<td style="text-align:left;">
+80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+102.6
+</td>
+<td style="text-align:left;">
+106.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+101
+</td>
+<td style="text-align:left;">
+103
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Longest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+180
+</td>
+<td style="text-align:left;">
+189
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="are-longer-movie-types-becoming-more-common-than-before-and-shorter-movie-types-less-common" class="section level5">
+<h5>2. Are longer movie types becoming more common than before, and shorter movie types less common</h5>
+<div id="id_2a" class="section level6">
+<h6>a) Are Action movies more present among Blockbusters now than before?</h6>
+<p><font size = "1"> Back to <a href="#q2">the questions</a>. </font></p>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"data":[{"orientation":"v","width":0.44999999999999996,"base":0,"x":[0.77500000000000002],"y":[56.859999999999999],"text":"Movie Type: Action<br />Percentage: 56.86<br />Group: Before (2009-2015)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,0,139,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Before (2009-2015)","legendgroup":"Before (2009-2015)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.45000000000000018,"base":0,"x":[1.2250000000000001],"y":[62],"text":"Movie Type: Action<br />Percentage: 62.00<br />Group: After (2016-2022)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(184,134,11,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"After (2016-2022)","legendgroup":"After (2016-2022)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":37.260273972602747},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"% of movies that are Action","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,1.6000000000000001],"tickmode":"array","ticktext":["Action"],"tickvals":[1],"categoryorder":"array","categoryarray":["Action"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Genre","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-3.1000000000000001,65.099999999999994],"tickmode":"array","ticktext":["0","20","40","60"],"tickvals":[0,20,40,60],"categoryorder":"array","categoryarray":["0","20","40","60"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"%","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Group","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"d2422b3548e":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"d2422b3548e","visdat":{"d2422b3548e":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="id_2b" class="section level6">
+<h6>b) are non-Action Comedies less present among Blockbusters now than before?</h6>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-3" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"data":[{"orientation":"v","width":0.44999999999999996,"base":0,"x":[0.77500000000000002],"y":[28],"text":"Movie Type: Comedy<br />Percentage: 28.00<br />Group: Before (2009-2015)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,0,139,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Before (2009-2015)","legendgroup":"Before (2009-2015)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.45000000000000018,"base":0,"x":[1.2250000000000001],"y":[21.329999999999998],"text":"Movie Type: Comedy<br />Percentage: 21.33<br />Group: After (2016-2022)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(184,134,11,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"After (2016-2022)","legendgroup":"After (2016-2022)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":37.260273972602747},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"% of movies that are Comedy","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,1.6000000000000001],"tickmode":"array","ticktext":["Comedy"],"tickvals":[1],"categoryorder":"array","categoryarray":["Comedy"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Genre","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.4000000000000001,29.399999999999999],"tickmode":"array","ticktext":["0","10","20"],"tickvals":[0,10,20],"categoryorder":"array","categoryarray":["0","10","20"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"%","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Group","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"d241db2de7e":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"d241db2de7e","visdat":{"d241db2de7e":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="id_2c" class="section level6">
+<h6>d) are non-Action Comedies less present among mid-Budget movies now than before?</h6>
+<p><font size = "1"> Back to <a href="#q2">the questions</a>. </font></p>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"data":[{"orientation":"v","width":0.44999999999999996,"base":0,"x":[0.77500000000000002],"y":[32.859999999999999],"text":"Movie Type: Action<br />Percentage: 32.86<br />Group: Before (2009-2015)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,0,139,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Before (2009-2015)","legendgroup":"Before (2009-2015)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.45000000000000018,"base":0,"x":[1.2250000000000001],"y":[37.670000000000002],"text":"Movie Type: Action<br />Percentage: 37.67<br />Group: After (2016-2022)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(184,134,11,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"After (2016-2022)","legendgroup":"After (2016-2022)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":37.260273972602747},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"% of movies that are Action","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,1.6000000000000001],"tickmode":"array","ticktext":["Action"],"tickvals":[1],"categoryorder":"array","categoryarray":["Action"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Genre","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.8835000000000002,39.5535],"tickmode":"array","ticktext":["0","10","20","30"],"tickvals":[0,10.000000000000002,20.000000000000004,30],"categoryorder":"array","categoryarray":["0","10","20","30"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"%","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Group","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"d24fd19d3c":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"d24fd19d3c","visdat":{"d24fd19d3c":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="id_2d" class="section level6">
+<h6>d) are non-Action Comedies less present among mid-Budget movies now than before?</h6>
+<p><font size = "1"> Back to <a href="#q2">the questions</a>. </font></p>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-5" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-5">{"x":{"data":[{"orientation":"v","width":0.44999999999999996,"base":0,"x":[0.77500000000000002],"y":[33.43],"text":"Movie Type: Comedy<br />Percentage: 33.43<br />Group: Before (2009-2015)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,0,139,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Before (2009-2015)","legendgroup":"Before (2009-2015)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.45000000000000018,"base":0,"x":[1.2250000000000001],"y":[24.670000000000002],"text":"Movie Type: Comedy<br />Percentage: 24.67<br />Group: After (2016-2022)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(184,134,11,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"After (2016-2022)","legendgroup":"After (2016-2022)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":37.260273972602747},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"% of movies that are Comedy","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,1.6000000000000001],"tickmode":"array","ticktext":["Comedy"],"tickvals":[1],"categoryorder":"array","categoryarray":["Comedy"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Genre","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.6715,35.101500000000001],"tickmode":"array","ticktext":["0","10","20","30"],"tickvals":[0,10,20,30],"categoryorder":"array","categoryarray":["0","10","20","30"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"%","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Group","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"d24366ff700":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"d24366ff700","visdat":{"d24366ff700":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="before-what-movies-were-preferred-and-how-long-were-they" class="section level5">
+<h5>3. Before — what movies were preferred and how long were they</h5>
+<div id="id_3a" class="section level6">
+<h6>a) Among top box office performers, Were Action movies more present than non-Action Comedies?</h6>
+<p><font size = "1"> Back to <a href="#q3">the questions</a>. </font></p>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-6" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-6">{"x":{"data":[{"orientation":"v","width":0.44999999999999996,"base":0,"x":[0.77500000000000002],"y":[45.140000000000001],"text":"Movie Type: Action<br />Percentage: 45.14<br />Group: Group A (Highest Grossers)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,0,139,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Group A (Highest Grossers)","legendgroup":"Group A (Highest Grossers)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.45000000000000018,"base":0,"x":[1.2250000000000001],"y":[27.710000000000001],"text":"Movie Type: Action<br />Percentage: 27.71<br />Group: Group B (Next-Highest Grossers)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(184,134,11,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Group B (Next-Highest Grossers)","legendgroup":"Group B (Next-Highest Grossers)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":37.260273972602747},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"% of movies that are Action","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,1.6000000000000001],"tickmode":"array","ticktext":["Action"],"tickvals":[1],"categoryorder":"array","categoryarray":["Action"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Genre","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2.2570000000000001,47.396999999999998],"tickmode":"array","ticktext":["0","10","20","30","40"],"tickvals":[0,10,20,29.999999999999996,40],"categoryorder":"array","categoryarray":["0","10","20","30","40"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"%","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Group","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"d24126d0e20":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"d24126d0e20","visdat":{"d24126d0e20":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="id_3b" class="section level6">
+<h6>b) Among mid box office performers, Were Action movies more present than non-Action Comedies?</h6>
+<p><font size = "1"> Back to <a href="#q3">the questions</a>. </font></p>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-7" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-7">{"x":{"data":[{"orientation":"v","width":0.44999999999999996,"base":0,"x":[0.77500000000000002],"y":[33.710000000000001],"text":"Movie Type: Comedy<br />Percentage: 33.71<br />Group: Group A (Highest Grossers)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,0,139,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Group A (Highest Grossers)","legendgroup":"Group A (Highest Grossers)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.45000000000000018,"base":0,"x":[1.2250000000000001],"y":[37.710000000000001],"text":"Movie Type: Comedy<br />Percentage: 37.71<br />Group: Group B (Next-Highest Grossers)","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(184,134,11,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Group B (Next-Highest Grossers)","legendgroup":"Group B (Next-Highest Grossers)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":37.260273972602747},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"% of movies that are Comedy","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,1.6000000000000001],"tickmode":"array","ticktext":["Comedy"],"tickvals":[1],"categoryorder":"array","categoryarray":["Comedy"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Genre","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.8855000000000002,39.595500000000001],"tickmode":"array","ticktext":["0","10","20","30"],"tickvals":[0,9.9999999999999982,20,30],"categoryorder":"array","categoryarray":["0","10","20","30"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"%","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Group","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"d2467a14b9c":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"d2467a14b9c","visdat":{"d2467a14b9c":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="id_3c" class="section level6">
+<h6>c) Were Action movies longer than non-Action Comedies?</h6>
+<p><font size = "1"> Back to <a href="#q3">the questions</a>. </font></p>
+<table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<span id="tab:unnamed-chunk-32">Table 8: </span>Table 7: Movie Runtimes of the top 50 highest budget Action vs non-Action Comedy films — 2009-2015
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Group A (Action-less Comedies)
+</th>
+<th style="text-align:left;">
+Group B (Action flicks)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Number of Movies
+</td>
+<td style="text-align:left;">
+300
+</td>
+<td style="text-align:left;">
+300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shortest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+80
+</td>
+<td style="text-align:left;">
+78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+106.3
+</td>
+<td style="text-align:left;">
+118.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+103
+</td>
+<td style="text-align:left;">
+117
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Longest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+189
+</td>
+<td style="text-align:left;">
+242
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="id_3d" class="section level6">
+<h6>d) Were the top box office performers longer than the mid box office performers?</h6>
+<p><font size = "1"> Back to <a href="#q3">the questions</a>. </font></p>
+<table style="width:60%; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<span id="tab:unnamed-chunk-34">Table 9: </span>Table 8: Movie Runtimes of the 1-50 highest grossing vs 51-100 highest grossing films — 2009-2015
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Group A (Next-Highest Grossing)
+</th>
+<th style="text-align:left;">
+Group B (Highest Grossing)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Number of Movies
+</td>
+<td style="text-align:left;">
+300
+</td>
+<td style="text-align:left;">
+300
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Shortest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+83
+</td>
+<td style="text-align:left;">
+81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+111.8
+</td>
+<td style="text-align:left;">
+117.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+108
+</td>
+<td style="text-align:left;">
+115
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Longest Movie Runtime (mins)
+</td>
+<td style="text-align:left;">
+189
+</td>
+<td style="text-align:left;">
+192
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
