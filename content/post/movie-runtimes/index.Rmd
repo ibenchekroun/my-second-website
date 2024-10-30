@@ -1048,7 +1048,7 @@ The most recent data I have is of 2022, meaning I'm missing a full year of the m
 
 ### Dashboard Plug
 
-The results of the analysis are specific to how Blockbuster and Mid-Budget films were defined, and to the time periods used for the 'Before'/'After' analysis. Other approaches to a movie runtime investigation could be perfectly valid, which is why I built a dashboard letting you explore the IMDb movie runtime data how you wish. With the tool, you can see how movie runtime varies over time and by genre or production company. You can filter the movies based on release year, budget, box office gross, director and other characteristics. Please note, however, that as in any analysis, the movies you’re including (or excluding) should affect your interpretations accordingly. All the plots and tables in this post were produced using the dashboard linked here.
+The results of the analysis are specific to how Blockbuster and Mid-Budget films were defined, and to the time periods used for the 'Before'/'After' analysis. Other approaches to a movie runtime investigation could be perfectly valid, which is why I built a dashboard letting you explore the IMDb movie runtime data how you wish. With the tool, you can see how movie runtime varies over time and by genre or production company. You can filter the movies based on release year, budget, box office gross, director and other characteristics. Please note, however, that as in any analysis, the movies you’re including (or excluding) should affect your interpretations accordingly. All the plots and tables in this post were produced using the dashboard linked [here](https://analitty.shinyapps.io/MovieRuntimes/).
 
 
 ### Summary
