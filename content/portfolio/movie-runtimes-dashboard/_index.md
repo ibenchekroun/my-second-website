@@ -5,12 +5,11 @@ designs:
 jobDate: October 2024
 techs:
 - R shiny
-thumbnail: decision-maker/Fleabag.jpeg
+thumbnail:
 title: Movie Runtimes Dashboard
 work:
 cover:
-    #image: /Fleabag.jpeg/ # image path/url
-    #imageUrl: https://analitty.shinyapps.io/Scouting_Report/
+    image: /arrival.png/ # image path/url
 
 ---
 
