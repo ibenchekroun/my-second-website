@@ -823,51 +823,57 @@ kable(transposed_df, format = "html", table.attr = "style='width:60%;'", caption
   kableExtra::kable_styling()
 ```
 
-This passive framing of moviegoers (of us) that accompanies the “movies are getting longer” discourse is what urks me. Even industry insiders are guilty of it, as producer David T. Friendly (Little Miss Sunshine) voiced his frustrations [online](https://puck.news/shorter-movies-please/) over the length of recent Oscar-nominated movies and called for filmmakers to trim their movies. He obviously knows the industry more than I do, but why point to the filmmakers while not asking anything of the Academy members (himself included) who nominated long films over shorter ones (e.g. [Fallen Leaves](https://www.imdb.com/title/tt21027780/), [All of Us Strangers](https://www.imdb.com/title/tt21192142/), [Bottoms](https://www.imdb.com/title/tt17527468/), etc.)? Asking for longer movies to be shortened when we are not even watching or rewarding the shorter ones feels hypocritical, to say the least. 
+This passive framing of moviegoers (of us) that accompanies the “movies are getting longer” discourse is what urks me. Even industry insiders are guilty of it, as producer David T. Friendly (Little Miss Sunshine) voiced his frustrations [online](https://puck.news/shorter-movies-please/) over the length of recent Oscar-nominated movies and called for filmmakers to trim their movies. He obviously knows the industry more than I do, but why point to the filmmakers while not asking anything of the Academy members (himself included) who nominated long films over shorter ones (e.g. [Fallen Leaves](https://www.imdb.com/title/tt21027780/) (81 minutes), [All of Us Strangers](https://www.imdb.com/title/tt21192142/) (105 minutes), [Bottoms](https://www.imdb.com/title/tt17527468/) (91 minutes), etc.)? Asking for longer movies to be shortened when we are not even watching or rewarding the shorter ones feels hypocritical, to say the least. 
 
 Since I take issue with others’ interpretations on movie runtime data and I have 26K rows of scraped IMDb data sitting in my laptop, why not explore the topic myself.
 
-### What I'd like to explore
+## My thoughts
 
-I enjoy [short](https://www.imdb.com/title/tt11317142/) and [long](https://www.imdb.com/title/tt1950186/) movies alike. Movie runtimes, as a topic by itself, feels peripheral.
+### Movie runtimes, as a topic by itself, feels peripheral. 
+To me, an increase in runtime among popular movies would merely be a symptom of deeper, more conscious (and interesting) changes in Hollywood. This analysis thus gives me the opportunity to explore an industry trend  I care more strongly about: the [decline of mid-budget movies](https://www.cnn.com/2022/02/26/entertainment/mid-budget-movie-decline-cec/index.html), and of mid-budget comedies in particular.
 
-An increase in runtime among popular movies would merely be a symptom of a deeper, more conscious (and interesting) change in Hollywood. One such change I'll explore is the **[decline of mid-budget movies](https://www.cnn.com/2022/02/26/entertainment/mid-budget-movie-decline-cec/index.html), and mid-budget comedies in particular**. Another recent trend, which is inter-related to the previous, is all the **superhero and I.P.-based Action movies** that have dominated theater screens since the advent of the Marvel Cinematic Universe (MCU). If Comedies are shorter in runtime than Action movies - which they are - then a drop in Comedy and rise in Action among mainstream movies would naturally result in an increase in average runtime. Note that any film production changes that have occured in recent years could not have come from a vaccuum; box office successes (and failures) of the past are likely to have informed recent film studio decision-making. 
+### We used to be a people that watched 100-minute-long Comedy movies in a Cineplex Odeon theater.
+From 2009 to 2015, we had two Grown Ups and three Hangover films grace our cinemas, all of which were between 100 and 102 minutes in runtime, and made \$200 to \$550 million each. The year 2011 saw two Rom Coms called No Strings Attached (110 minutes) and Friends with Benefits (109 minutes) release in theaters; they shared the same exact premise as each other and yet each grossed a handsome \$150 million worldwide. Now, Adam Sandler movies go straight to [Netflix](https://www.indiewire.com/features/general/adam-sandler-netflix-deal-extended-four-movies-1202207433/), The Hangover director is onto his second Joker film, and Romantic Comedies… go straight to [Netflix](https://www.imdb.com/title/tt7374948/) (or [Hulu](https://www.imdb.com/title/tt15218000/), [Prime](https://www.imdb.com/title/tt6462958/), and so on). 
 
-Of course, I'm also considering the role streaming services has undoubtedly played in the types of movies we now see in theaters. 
+### a plot of Adam Sandler comedies over the years
+
+Meanwhile, superhero- and I.P.- based Action movies have dominated theater screens since the advent of the MCU. If Comedies are shorter in runtime than Action movies - which they are - then a drop in Comedy and rise in Action among mainstream movies would naturally result in an increase in average runtime. Note that any film production changes that have occurred in recent years could not have come from a vacuum; box office successes (and failures) of the past are likely to have informed recent film studio decision-making. 
+
+
+<!-- #### Mid-Budget movies  -->
+<!-- One such change I'll explore is the [decline of mid-budget movies](https://www.cnn.com/2022/02/26/entertainment/mid-budget-movie-decline-cec/index.html), and mid-budget comedies in particular. A lot of these movies get limited theatrical releases now, if any at all, instead being distributed by streaming services. Another recent trend is all the superhero and I.P.-based Action movies that have dominated theater screens since the advent of the MCU. If Comedies are shorter in runtime than Action movies - which they are - then a drop in Comedy and rise in Action among mainstream movies would naturally result in an increase in average runtime. Note that any film production changes that have occurred in recent years could not have come from a vacuum; box office successes (and failures) of the past are likely to have informed recent film studio decision-making.  -->
 
 Keeping all that in mind, I came up with the questions below.
 
-### Questions of Interest
+## Questions of Interest
 
-<font size="4">
-
-#### 1. Are movies longer now than before? {#q1}
+### 1. Are movies longer now than before? {#q1}
 a) Are blockbusters longer now than before? <font size="1"> See [Result](#1a). </font>
 b) Are mid-budget movies longer now than before? <font size="1"> See [Result](#1b). </font>
 c) Are Action movies longer now than before? <font size="1"> See [Result](#1c). </font>
 d) Are non-Action Comedy movies longer now than before? <font size="1"> See [Result](#1d). </font>
 
-#### 2. Are longer movie types becoming more common than before, and shorter movie types less common? {#q2}
+### 2. Are longer movie types becoming more common than before, and shorter movie types less common? {#q2}
 a) Are Action movies more present among Blockbusters now than before? <font size="1"> See [Result](#2a). </font>
 b) are non-Action Comedies less present among Blockbusters now than before? <font size="1"> See [Result](#2b). </font>
 c) Are Action movies more present among mid-Budget movies now than before? <font size="1"> See [Result](#2c). </font>
 d) are non-Action Comedies less present among mid-Budget movies now than before? <font size="1"> See [Result](#2d). </font>
 
-#### 3. Before --- what movies were preferred and how long were they? {#q3}
+### 3. Before --- what movies were preferred and how long were they? {#q3}
 a) Among top box office performers, Were Action movies more present than non-Action Comedies?  <font size="1"> See [Result](#3a). </font>
 b) Among mid box office performers, Were Action movies more present than non-Action Comedies? <font size="1"> See [Result](#3b). </font>
 c) Were Action movies longer than non-Action Comedies? <font size="1"> See [Result](#3c). </font>
 d) Were the top box office performers longer than the mid box office performers? <font size="1"> See [Result](#3d). </font>
 
+## Distinguishing between Blockbuster and Mid-Budget, defining our Before/After time periods
+
 To learn how certain parameters were defined, explanation [here](#settingparameters).
 
-</font>
-
-### Results
+## Results
 
 <font size="4">
 
-* **Blockbuster Movies got 6 minutes longer**: The biggest budget films of each year did get longer, on average, by 6 minutes.   
+* Blockbuster Movies got 6 minutes longer: The **biggest budget films of each year did get longer, on average, by 6 minutes.**    
 
 ```{r, echo = FALSE, include = FALSE}
 before_year1 <- 2009
@@ -941,8 +947,8 @@ kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", capti
 <!-- In 2009-2015, The yearly fifty  **highest grossing films were 6 minutes longer than the fifty next-highest grossing movies** , on average. The  **first 50 had more Action**  movies than non-Action Comedies (45% vs 33%) whereas the  **next 50 had fewer Action**  movies than non-Action Comedies. -->
 
 * Current Action vs Comedy trends:
-  * **Action**: Studios now make **5% more Blockbuster** and **5% more Mid-Budget** movies that are Action than before (62% vs 57% and 38% vs 33%).
-  * **Non-Action Comedy**: Studios now make **7% fewer Blockbuster** and **9% fewer Mid-Budget** movies that are non-Action Comedies than before. This means the Mid-Budget movies went from having as many Action movies as non-Action Comedies in 2009-2015 to having 14% more Action movies than non-Action Comedies in 2016-2022. 
+  * Action: Studios now make **5% more Blockbuster** and **5% more Mid-Budget** movies that are Action than before (62% vs 57% and 38% vs 33%).
+  * Non-Action Comedy: Studios now make **7% fewer Blockbuster** and **9% fewer Mid-Budget** movies that are non-Action Comedies than before. This means the Mid-Budget movies went from having as many Action movies as non-Action Comedies in 2009-2015 to having 14% more Action movies than non-Action Comedies in 2016-2022. 
   * **Movie types themselves are getting longer**: Action movies are 6 minutes longer now and non-Action Comedies are 3 minutes longer, on average. 
   
   <!-- **Rise of big Action Movies (and fall of big Non-Action Comedies)**  : More Action movies are among both Blockbusters and Mid-Budget movies now than before (62% vs 57% and 38% vs 33%). Conversely, the non-Action Comedies fell among both budget groups (28% vs 21% and 33% to 24%). This means the Mid-Budget movies went from having as many Action movies as non-Action Comedies in 2009-2015 to having 14% more Action movies than non-Action Comedies in 2016-2022.  -->
@@ -1058,11 +1064,10 @@ In addition, though, Action films themselves are getting longer in runtime - als
 <!-- Clearly, streaming services play a role (both direct and indirect) in what films we get to see within reasonable access, and that’s worrisome!  Netflix’s use of an algorithm to inform its TV programming is scary. It wasn’t scary when Netflix would give artists a platform to make fun, original comedy specials like Chelsea Peretti: One of the Greats, but it *is* scary when Netflix decides to remove one of their very first “Netflix Original” comedy specials, Chelsea Peretti: One of the Greats, from their platform. The special was even wiped from the Netflix stand up specials wikipedia page. https://en.wikipedia.org/wiki/List_of_Netflix_original_stand-up_comedy_specials  -->
 
 ### Closing Thoughts
-#### We used to be a country that watched 100-minute-long Comedy movies in a Cineplex Odeon theater.
-From 2009 to 2015, we had two Grown Ups and three Hangover films grace our cinemas, all of which were between 100 and 102 minutes in runtime, and made \$200 to \$550 million each. The year 2011 saw two Rom Coms called No Strings Attached and Friends with Benefits release in theaters; they shared the same exact premise and yet both grossed a handsome \$150 million worldwide each. Now, Adam Sandler movies go straight to [Netflix](https://www.indiewire.com/features/general/adam-sandler-netflix-deal-extended-four-movies-1202207433/), The Hangover director is onto his second Joker film, and Romantic Comedies… go straight to [Netflix](https://www.imdb.com/title/tt7374948/) (or [Hulu](https://www.imdb.com/title/tt15218000/), [Prime](https://www.imdb.com/title/tt6462958/), and so on). 
+
 
 #### Can "smaller" movies make a theatrical comeback? 
-According to a [survey](https://www.thecinemafoundation.org/wp-content/uploads/2023/03/State-of-the-Cinema-Industry-March-2023.pdf) conducted by The Cinema Foundation, people want to watch more comedies in theaters. Anyone But You's box office success is evidence of this sentiment, and we've since seen [other producers](https://www.worldofreel.com/blog/2024/10/24/wuthering-heights) choose theatrical releases over a big Netflix cheque. Moreover, in his Academy Award acceptance speech for writing [American Fiction](https://www.imdb.com/title/tt23561236/), Cord Jefferson called out studios' blockbuster-obsessed nature and advocated "Instead of making one \$200 million movie, try making 10 \$20 million movies". He was met with applause but who knows how earnest. 
+According to a [survey](https://www.thecinemafoundation.org/wp-content/uploads/2023/03/State-of-the-Cinema-Industry-March-2023.pdf) conducted by The Cinema Foundation, people want to watch more comedies in theaters. Anyone But You's box office success is evidence of this sentiment, and we've since seen [other producers](https://www.worldofreel.com/blog/2024/10/24/wuthering-heights) choose theatrical releases over a big Netflix cheque. Moreover, in his Academy Award acceptance speech for writing [American Fiction](https://www.imdb.com/title/tt23561236/), Cord Jefferson called out studios' blockbuster-obsessed nature and advocated "Instead of making one \$200 million movie, try making ten \$20 million movies". He was met with applause but who knows how earnest. 
 
 In the meantime, we can still go out and enjoy one of the fewer - but present nonetheless - [shorter movies released in theaters](https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,&runtime=1,100&now_playing=restrict&sort=boxoffice_gross_us,asc). Maybe watch two since they're so short. 
 
@@ -1071,6 +1076,7 @@ In the meantime, we can still go out and enjoy one of the fewer - but present no
 
 #### A1: Defining 'Mainstream', distinguishing between 'Mid-Budget' and 'Blockbuster', and choosing our 'Before' and 'Now' periods {#settingparameters}
 
+## move up just the definition of these and then have a plot of the top 100 budget 
 
 ###### Mainstream
 I’d consider mainstream movies to be the most accessible to the average moviegoer. The IMDb-provided variable that is most related to accessibility (in my opinion) is movie budget. That is, the greater the budget of a movie, the more I'd expect it to be given a wide theatrical release and be part of “the mainstream culture”. Since there are about 100 movies released in theaters per year (according to [statista](https://www.statista.com/statistics/1400581/number-movies-released-theaters-us-canada/)), I define mainstream movies as those among the top 100 budget films of their given release year.  
