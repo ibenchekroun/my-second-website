@@ -13,12 +13,23 @@
     <language>en-US</language>
     <lastBuildDate>Tue, 29 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://meanmedianandme.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Are mainstream movies getting longer?</title>
-      <link>https://meanmedianandme.netlify.app/post/movie-runtimes/</link>
+      <title>Are movies getting longer?</title>
+      <link>https://meanmedianandme.netlify.app/post/movie-runtimes/backup/</link>
       <pubDate>Tue, 29 Oct 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://meanmedianandme.netlify.app/post/movie-runtimes/</guid>
-      <description>What others have said and why I don’t like what they said Last year, Vanity Fair published an article comparing the top twenty US box office performers of 2022 to those of 2002. They found that, on average, the 2022 films were 13 minutes longer than the 2002 films. Maybe those years seem arbitrarily chosen, and the twenty movie sample size is a little small for your taste, but to me the statistic is a nice illustration of how popular movies may have changed over a twenty-year period.</description>
+      <guid>https://meanmedianandme.netlify.app/post/movie-runtimes/backup/</guid>
+      <description>Yes, they are getting longer, by six minutes. But I used to not know that.
+For a while, I didn’t care to find out. Why would I, when there will always be so many great shorter films out there I have yet to watch? Over time, however, I got sick of hearing people who had never bothered to look for short gems like Shiva Baby (78 minutes) complain that movies were getting longer.</description>
+    </item>
+    
+    <item>
+      <title>Are movies getting longer?</title>
+      <link>https://meanmedianandme.netlify.app/post/movie-runtimes/ignore/</link>
+      <pubDate>Tue, 29 Oct 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://meanmedianandme.netlify.app/post/movie-runtimes/ignore/</guid>
+      <description>Yes, they are getting longer, by six minutes. But I used to not know that.
+For a while, I didn’t care to find out. Why would I, when there will always be so many great shorter films out there I have yet to watch? Over time, however, I got sick of hearing people who had never bothered to look for short gems like Shiva Baby (78 minutes) complain that movies were getting longer.</description>
     </item>
     
   </channel>
