@@ -866,18 +866,19 @@ To learn how Blockbusters, Mid-Budget, and the 'Before' and 'Now' time periods w
 </font>
 
 ## Movies included in the analysis
+<font size="2">
 Similar to the Vanity Fair article from earlier, this analysis will be comparing movies from two different time periods: "before", and "now". 
 
 
-### Movies "before": 2009-2015
+#### Movies "before": 2009-2015
 The ‘Before’ period was set to be the years 2009 to 2015. I think these years represent the beginning of the MCU, from their first hits (except Iron Man (2008)) to their first Avengers films (143 and 141 minutes, respectively) in which standalone characters crossed over with each other for the first time, grossing billions of dollars and solidifying the ‘Universe’. This timespan also covers Netflix’s rise in popularity, and the start of streaming services original programming (which was both [popular](https://www.imdb.com/title/tt1856010/) and [critically acclaimed](https://www.imdb.com/title/tt3502262/)). 
 
-### Movies "now": 2016-2022 (excluding 2020)
+#### Movies "now": 2016-2022 (excluding 2020)
 The ‘Now’ period was set as 2016 to 2022, with 2020 excluded due to the outlier-like impact COVID-19 had on film that year. This era saw the [peak of the MCU](https://www.imdb.com/title/tt4154796/) (181 minutes), the advent of so many  other [I.P.-based](https://www.imdb.com/title/tt1985949/) [movie](https://www.imdb.com/title/tt3794354/) [universes](https://www.imdb.com/title/tt5034838/), and the ubiquity of streaming services. 
 
 A major focus of this analysis was on Blockbuster and Mid-Budget movies.
 
-### Blockbuster Movies
+#### Blockbuster Movies
 A movie was considered a "Blockbuster" if its budget was among the top 50 budgets of films released in its release year. 
 
 ```{r, echo = FALSE}
@@ -1014,8 +1015,8 @@ dd <- filtered_data6 # print(colnames(filtered_data4()))
 ```
 
 
-### Mid-Budget Movies
-A movie was be considered to be "Mid-Budget" if its budget was among the 51st to 100th greatest budgets of films released in its release year.
+#### Mid-Budget Movies
+A movie was considered to be "Mid-Budget" if its budget was among the 51st to 100th greatest budgets of films released in its release year.
 
 ```{r, echo = FALSE}
 
@@ -1156,7 +1157,7 @@ Similarly, top box office performers and mid box office performers were determin
 
 Gross, budget, and genres are properly defined in the [glossary](#Glossary). 
 
-
+</font>
 
 ## Results
 
@@ -1331,7 +1332,7 @@ subplot(style(plot_3e, showlegend = FALSE),
 
 ### Dashboard Plug
 
-The results of the analysis are specific to how Blockbuster and Mid-Budget films were defined, and to the time periods used for the 'Before'/'After' analysis. Other approaches to a movie runtime investigation could be perfectly valid, which is why I built a dashboard letting you explore the IMDb movie runtime data how you wish. With the tool, you can see how movie runtime varies over time and by genre or production company. You can specify the time periods for your own 'Before'/'After' analysis, as well as compare two kinds of movies of your choice. You can filter the movies based on genre, release year, budget, box office gross, director and other characteristics. Please note, however, that as in any analysis, the movies you’re including (or excluding) should affect your interpretations accordingly. All the plots and tables in this post were produced using the dashboard, which is linked [here](https://analitty.shinyapps.io/MovieRuntimes/).
+The results of the analysis are specific to how Blockbuster and Mid-Budget films were defined, and to the time periods used for the 'Before'/'After' analysis. Other approaches to a movie runtime investigation could be perfectly valid, which is why I [built a dashboard](https://meanmedianandme.netlify.app/portfolio/movie-runtimes-dashboard/) letting you explore the IMDb movie runtime data how you wish. With the tool, you can see how movie runtime varies over time and by genre or production company. You can specify the time periods for your own 'Before'/'After' analysis, as well as compare two kinds of movies of your choice. You can filter the movies based on genre, release year, budget, box office gross, director and other characteristics. Please note, however, that as in any analysis, the movies you’re including (or excluding) should affect your interpretations accordingly. All the plots and tables in this post were produced using the dashboard, which is linked [here](https://analitty.shinyapps.io/MovieRuntimes/).
 
 ### Summary
 
