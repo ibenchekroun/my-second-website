@@ -738,9 +738,9 @@ This is a question I've heard asked in the past couple years by friends and foes
 
 ### What others had said and why I do not like what they said
 
-Last year, Vanity Fair published [an article](https://www.vanityfair.com/hollywood/2023/07/why-are-movies-sooooo-long-an-investigation) comparing the top twenty US box office-performing movies of 2022 to those of 2002. They found that, on average, the 2022 films were 13 minutes longer than the 2002 films. Maybe those years seem arbitrarily chosen, and the twenty movie sample size is a little small for your taste, but to me the statistic is a nice illustration of how popular movies may have changed over a twenty-year period. To the writer, however, it meant that “moviegoers had to sit through” an additional 13 minutes of screentime, as though people have no say in the movie theater tickets we buy.
+Last year, Vanity Fair published [an article](https://www.vanityfair.com/hollywood/2023/07/why-are-movies-sooooo-long-an-investigation) comparing the top twenty US box office performers of 2022 to those of 2002. They found that, on average, the 2022 films were 13 minutes longer than the 2002 films. Maybe those years seem arbitrarily chosen, and the twenty movie sample size is a little small for your taste, but to me the statistic is a nice illustration of how popular movies may have changed over a twenty-year period. To the writer, however, it meant that “moviegoers had to sit through” an additional 13 minutes of screentime, as though people have no say in the movie theater tickets we buy.
 
-On the contrary, the top box office performers are the films people specifically chose to watch over all others. Who knows how long the non-highest grossing films were? They very well might have been shorter! As Table 2 below shows us, the next twenty greatest box office performers (21-40) i) are shorter in runtime than the first twenty, and ii) see a slight decrease in average runtime over the twenty years. If anything, the more valid takeaway is that filmmakers had to produce an additional 13 minutes of footage to keep audiences interested than the other way around. 
+On the contrary, the top box office performers are the films people specifically chose to watch over all others. Who knows how long the non-highest grossing films were? They very well might have been shorter! This is what Table 1 below shows us, with the next twenty greatest box office performers (21-40) seeing a decrease of 1 minute in average runtime over the twenty years. If anything, the more valid takeaway from the article's 2002 vs 2022 comparison is that filmmakers had to produce an additional 13 minutes of footage to keep audiences interested than the other way around. 
 
 ```{r, echo = FALSE, include = FALSE}
 ratings_threshold_ba <- 0
@@ -827,7 +827,7 @@ kable(transposed_df, format = "html", table.attr = "style='width:60%;'", caption
 
 This passive framing of moviegoers (of us) that accompanies the “movies are getting longer” discourse is what urks me. Even industry insiders are guilty of it, as producer David T. Friendly (Little Miss Sunshine) voiced his frustrations [online](https://puck.news/shorter-movies-please/) over the length of recent Oscar-nominated movies and called for filmmakers to trim their movies. He obviously knows the industry more than I do, but why point to the filmmakers while not asking anything of the Academy members (himself included) who nominated long films over shorter ones (e.g. [Fallen Leaves](https://www.imdb.com/title/tt21027780/), [All of Us Strangers](https://www.imdb.com/title/tt21192142/), [Bottoms](https://www.imdb.com/title/tt17527468/), etc.)? Asking for longer movies to be shortened when we are not even watching or rewarding the shorter ones feels hypocritical, to say the least. 
 
-Since I took issue with others’ interpretations on movie runtime data and I have 26K rows of scraped IMDb data sitting in my laptop, I decided to explore the topic myself.
+Since I took issue with others’ interpretations on movie runtime data and I have 29.9K rows of scraped IMDb data sitting in my laptop, I decided to explore the topic myself.
 
 ### What I wanted to explore
 
@@ -835,7 +835,7 @@ Movie runtimes, as a topic by itself, feels peripheral.
 
 An increase in runtime among popular movies would merely be a symptom of a deeper, more conscious (and interesting) change in Hollywood. One such change I'll explore is the **[decline of mid-budget movies](https://www.cnn.com/2022/02/26/entertainment/mid-budget-movie-decline-cec/index.html), and mid-budget comedies in particular**. Another recent trend, which is inversely related to the previous, is all the **superhero and I.P.-based Action movies** that have dominated theater screens since the advent of the Marvel Cinematic Universe (MCU). If Comedies are shorter in runtime than Action movies - which they are - then a drop in Comedy and rise in Action among mainstream movies would naturally result in an increase in average runtime. Note that any film production changes from recent years could not have come from a vaccuum; box office successes (and failures) of the past are likely to have informed recent film studio decision-making. 
 
-Of course, I'm also considering the huge role streaming services has played in the types of movies we now see in theaters. 
+Of course, **streaming services** has played a huge role in the types of movies we now see in theaters, and were considered when specifying the timeline of the analysis. 
 
 Keeping all that in mind, I came up with the questions below.
 
@@ -861,9 +861,300 @@ b) Among mid box office performers, Were Action movies more present than non-Act
 c) Were Action movies longer than non-Action Comedies? <font size="1"> See [Result](#3c). </font>
 d) Were the top box office performers longer than the mid box office performers? <font size="1"> See [Result](#3d). </font>
 
-To learn how Blockbusters, Mid-Budget, and the 'Before' and 'Now' time periods were defined, explanation [here](#settingparameters).
+To learn how Blockbusters, Mid-Budget, and the 'Before' and 'Now' time periods were defined, find out [here](#settingparameters).
 
 </font>
+
+## Movies included in the analysis
+Similar to the Vanity Fair article from earlier, this analysis will be comparing movies from two different time periods: "before", and "now". 
+
+
+### Movies "before": 2009-2015
+The ‘Before’ period was set to be the years 2009 to 2015. I think these years represent the beginning of the MCU, from their first hits (except Iron Man (2008)) to their first Avengers films (143 and 141 minutes, respectively) in which standalone characters crossed over with each other for the first time, grossing billions of dollars and solidifying the ‘Universe’. This timespan also covers Netflix’s rise in popularity, and the start of streaming services original programming (which was both [popular](https://www.imdb.com/title/tt1856010/) and [critically acclaimed](https://www.imdb.com/title/tt3502262/)). 
+
+### Movies "now": 2016-2022 (excluding 2020)
+The ‘Now’ period was set as 2016 to 2022, with 2020 excluded due to the outlier-like impact COVID-19 had on film that year. This era saw the [peak of the MCU](https://www.imdb.com/title/tt4154796/) (181 minutes), the advent of so many  other [I.P.-based](https://www.imdb.com/title/tt1985949/) [movie](https://www.imdb.com/title/tt3794354/) [universes](https://www.imdb.com/title/tt5034838/), and the ubiquity of streaming services. 
+
+A major focus of this analysis was on Blockbuster and Mid-Budget movies.
+
+### Blockbuster Movies
+A movie was considered a "Blockbuster" if its budget was among the top 50 budgets of films released in its release year. 
+
+```{r, echo = FALSE}
+
+get_scatterplot_years <- function(the_data, func){
+    the_data$Runtime <- the_data$Runtime_numeric
+    the_data$Year <- the_data$Year_numeric
+    
+    p <- the_data %>% 
+      ggplot(aes(x = Year, y = Runtime, label = Title)) +
+      geom_point() +
+      labs(y = "Runtime (minutes)") +
+      ggtitle("Runtime over the years") +
+      # guides(fill = FALSE) + #+
+      # scale_x_discrete(breaks = seq(input$min_year_g, input$max_year_g, by = 5)) + 
+      theme(
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.background = element_blank()#,
+        # legend.position = "top"
+      )
+      list(p, the_data$Runtime,
+            list()
+           )
+}
+
+before_year1 = 2009;
+                           before_year2 = 2015;
+                            after_year1 = 2016;
+                            after_year2 = 2022;
+
+ratings_threshold_ba <- 0
+    the_bp_oscar_general_ba <- "ignore"
+    the_os_oscar_general_ba <- "ignore"
+    the_pc_general_ba <- "All"
+    the_a_general_ba <- "All"
+    the_w_general_ba <- "All"
+    the_d_general_ba <- "All"
+    the_g_general_ba <- "All"
+    the_top_50_ba <- "Budget"
+    top_from_ba <- 1
+    top_to_ba <- 50
+    exclude_years_ba <- 2020
+    exclude_genres_ba <- "Ignore"
+    
+filtered_data6 <- filter_data_ba_fn(before_year1,
+                           before_year2,
+                            after_year1,
+                            after_year2,
+                           ratings_threshold_ba, 
+                           the_bp_oscar_general_ba, 
+                           the_os_oscar_general_ba,
+                               the_pc_general_ba,
+    the_a_general_ba, 
+    the_w_general_ba, 
+    the_d_general_ba, 
+    the_g_general_ba, 
+    the_top_50_ba, 
+    top_from_ba,
+    top_to_ba,
+    exclude_years_ba, 
+    exclude_genres_ba)
+
+
+
+    l1 <- get_scatterplot_years(filtered_data6, "umm")
+  
+    p1 <- l1[[1]]
+    
+    r1 <- l1[[2]]
+    # 
+    t1 <- l1[[3]]
+    t1 <- coalesce(ifelse(t1 > 0, t1, 0), 0)
+    # t2 <- l2[[3]]
+    # t3 <- l3[[3]]
+    # t4 <- l4[[3]]
+    
+    min <- 0
+    max <- max(r1, t1)
+
+    # print(max)
+    min_max_2 <- list(list(p1), c(min, max) #, 
+    )
+    p <- min_max_2[[1]][[1]]
+    r <- min_max_2[[2]]
+    # print("START R")
+    # print(r)
+    # print("END OF IT")
+    
+    # t <- min_max_pc_2()[[3]]
+    if(filtered_data6 %>% nrow() >= 1){
+    gg <- ggplotly(p + 
+                     ggtitle("Blockbuster movies of 2009-2022 (2020 excluded)") + lims(x = c(2008, 2022+1), y = r) + scale_size_continuous(limits=c(1,110)), tooltip = c("x", "y", "label", "label2", "custom_variable" = ~"Runtime")
+    )}else{gg <- NoDataPlotly()}
+    
+    for (i in 1:length(gg$x$data)){
+      if (!is.null(gg$x$data[[i]]$name)){
+        gg$x$data[[i]]$name =  gsub("^\\(","",str_split(gg$x$data[[i]]$name,",")[[1]][1])
+      }
+    }
+    
+```
+
+```{r, echo = FALSE, fig.cap='Runtime of the top 50 budget films of each year from 2009 to 2022, excluding 2020'}
+
+    layout(gg, showlegend = TRUE, 
+           legend = list(orientation = "h", x = 0, y = 1.05)
+           )
+```
+
+
+```{r, echo = FALSE}
+dd <- filtered_data6 # print(colnames(filtered_data4()))
+
+    filtered_data_blockbusters <- dd %>% 
+      mutate(Budget_2020_usd_numeric = round(Budget_2020_usd_numeric),
+             img_url = paste0("<a href = '", url, "' <figure> <style> { color: darkblue; } /* CSS link color */
+  </style>","<img src = '", img_url, "' height=120 width=100</img> ", "<figcaption style=\"text-align-center\"><strong>", Title, "</strong> (", Year, ")", "</figcaption>
+</figure>")) %>% # filter_by_genres(filtered_data2, genres_from_plot_number_g()) %>%
+      select(img_url,Runtime_numeric, Budget, Genres, Budget_2020_usd_numeric) %>%
+      arrange(-Budget_2020_usd_numeric) %>% 
+      rename(`Runtime (mins)` = Runtime_numeric, Movie = img_url) %>% select(-Budget_2020_usd_numeric)
+#     filtered_data$img_url <- with(filtered_data, paste0("<figure>", "<style>
+#     a { color: darkblue; } /* CSS link color */
+#   </style>", img_url, "height=120></img>", "height=120 width=100></img>"), "<figcaption style=\"text-align-center\"><strong>", Title, "</strong> (", Year, ")", "</figcaption>
+# </figure>")))
+    # filtered_data$img_url = <img src="dinosaur.jpg" alt="Dinosaur" />
+    # filtered_data$img_url[1] = '<img src=\"https://www.basketball-reference.com/req/202106291/images/players/hartjo01.jpg\" height=150></img>'
+    # print(filtered_data$Movie[1])
+    # print(dd[2260,]$url)
+    # print(dd %>% filter(is.na(Title)))
+
+```
+
+
+### Mid-Budget Movies
+A movie was be considered to be "Mid-Budget" if its budget was among the 51st to 100th greatest budgets of films released in its release year.
+
+```{r, echo = FALSE}
+
+get_scatterplot_years <- function(the_data, func){
+    the_data$Runtime <- the_data$Runtime_numeric
+    the_data$Year <- the_data$Year_numeric
+    
+    p <- the_data %>% 
+      ggplot(aes(x = Year, y = Runtime, label = Title)) +
+      geom_point() +
+      labs(y = "Runtime (minutes)") +
+      ggtitle("Runtime over the years") +
+      # guides(fill = FALSE) + #+
+      # scale_x_discrete(breaks = seq(input$min_year_g, input$max_year_g, by = 5)) + 
+      theme(
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.background = element_blank()#,
+        # legend.position = "top"
+      )
+      list(p, the_data$Runtime,
+            list()
+           )
+}
+
+before_year1 = 2009;
+                           before_year2 = 2015;
+                            after_year1 = 2016;
+                            after_year2 = 2022;
+
+ratings_threshold_ba <- 0
+    the_bp_oscar_general_ba <- "ignore"
+    the_os_oscar_general_ba <- "ignore"
+    the_pc_general_ba <- "All"
+    the_a_general_ba <- "All"
+    the_w_general_ba <- "All"
+    the_d_general_ba <- "All"
+    the_g_general_ba <- "All"
+    the_top_50_ba <- "Budget"
+    top_from_ba <- 51
+    top_to_ba <- 100
+    exclude_years_ba <- 2020
+    exclude_genres_ba <- "Ignore"
+    
+filtered_data6 <- filter_data_ba_fn(before_year1,
+                           before_year2,
+                            after_year1,
+                            after_year2,
+                           ratings_threshold_ba, 
+                           the_bp_oscar_general_ba, 
+                           the_os_oscar_general_ba,
+                               the_pc_general_ba,
+    the_a_general_ba, 
+    the_w_general_ba, 
+    the_d_general_ba, 
+    the_g_general_ba, 
+    the_top_50_ba, 
+    top_from_ba,
+    top_to_ba,
+    exclude_years_ba, 
+    exclude_genres_ba)
+
+
+
+    l1 <- get_scatterplot_years(filtered_data6, "umm")
+  
+    p1 <- l1[[1]]
+    
+    r1 <- l1[[2]]
+    # 
+    t1 <- l1[[3]]
+    t1 <- coalesce(ifelse(t1 > 0, t1, 0), 0)
+    # t2 <- l2[[3]]
+    # t3 <- l3[[3]]
+    # t4 <- l4[[3]]
+    
+    min <- 0
+    max <- max(r1, t1)
+
+    # print(max)
+    min_max_2 <- list(list(p1), c(min, max) #, 
+    )
+    p <- min_max_2[[1]][[1]]
+    r <- min_max_2[[2]]
+    # print("START R")
+    # print(r)
+    # print("END OF IT")
+    
+    # t <- min_max_pc_2()[[3]]
+    if(filtered_data6 %>% nrow() >= 1){
+    gg <- ggplotly(p + 
+                     ggtitle("Mid-Budget movies of 2009-2022 (2020 excluded)") + lims(x = c(2008, 2022+1), y = r) + scale_size_continuous(limits=c(1,110)), tooltip = c("x", "y", "label", "label2", "custom_variable" = ~"Runtime")
+    )}else{gg <- NoDataPlotly()}
+    
+    for (i in 1:length(gg$x$data)){
+      if (!is.null(gg$x$data[[i]]$name)){
+        gg$x$data[[i]]$name =  gsub("^\\(","",str_split(gg$x$data[[i]]$name,",")[[1]][1])
+      }
+    }
+    
+```
+
+```{r, echo = FALSE, fig.cap='Runtime of the 51st to 100th budget films of each year from 2009 to 2022, excluding 2020'}
+
+    layout(gg, showlegend = TRUE, 
+           legend = list(orientation = "h", x = 0, y = 1.05)
+           )
+```
+
+
+```{r, echo = FALSE}
+dd <- filtered_data6 # print(colnames(filtered_data4()))
+
+    filtered_data_midbudget <- dd %>% 
+      mutate(Budget_2020_usd_numeric = round(Budget_2020_usd_numeric),
+             img_url = paste0("<a href = '", url, "' <figure> <style> { color: darkblue; } /* CSS link color */
+  </style>","<img src = '", img_url, "' height=120 width=100</img> ", "<figcaption style=\"text-align-center\"><strong>", Title, "</strong> (", Year, ")", "</figcaption>
+</figure>")) %>% # filter_by_genres(filtered_data2, genres_from_plot_number_g()) %>%
+      select(img_url,Runtime_numeric, Budget, Genres, Budget_2020_usd_numeric) %>%
+      arrange(-Budget_2020_usd_numeric) %>% 
+      rename(`Runtime (mins)` = Runtime_numeric, Movie = img_url) %>% select(-Budget_2020_usd_numeric)
+#     filtered_data$img_url <- with(filtered_data, paste0("<figure>", "<style>
+#     a { color: darkblue; } /* CSS link color */
+#   </style>", img_url, "height=120></img>", "height=120 width=100></img>"), "<figcaption style=\"text-align-center\"><strong>", Title, "</strong> (", Year, ")", "</figcaption>
+# </figure>")))
+    # filtered_data$img_url = <img src="dinosaur.jpg" alt="Dinosaur" />
+    # filtered_data$img_url[1] = '<img src=\"https://www.basketball-reference.com/req/202106291/images/players/hartjo01.jpg\" height=150></img>'
+    # print(filtered_data$Movie[1])
+    # print(dd[2260,]$url)
+    # print(dd %>% filter(is.na(Title)))
+    
+       
+```
+
+
+Similarly, top box office performers and mid box office performers were determined as the 1st to 50th and the 51st to 100th highest grossing movies of each year, respectively. 
+
+Gross, budget, and genres are properly defined in the [glossary](#Glossary). 
 
 
 
@@ -1049,7 +1340,7 @@ They were never the biggest box office performers, but comedies performed noneth
 
 These findings are consistent with the idea that studios are relying on I.P.-based “amusement park” movies to draw us out from our streaming services-infused homes. Streaming services, as [Matt Damon explains](https://virginradio.co.uk/entertainment/133533/matt-damon-blames-streaming-decline-quality-bad-films), also led to the death of DVD sales and rentals, which had provided production companies a considerable extra cushion of revenue. If the convenience of at-home, on-demand entertainment and lack of DVD revenue leads production companies to adopt a “go big or go home” strategy for theater releases, then they might think to double down on a higher grossing movie type, which we saw in 2009-2015 was Action more than Comedy. And since these Action films are generally longer than Comedies, then it makes sense mainstream movies are seeing an increase in runtime. 
 
-In addition, though, Action films themselves are getting longer in runtime - also by a 6 minutes average. One explanation is related to the [second limitation](#gentypes): there are various subtypes of Action movies, so perhaps longer-running subtypes have become more frequent than before, thereby increasing the average runtime for all Action movies. Post-credit scenes, which are now a commonplace element of franchise movies, may also be responsible for a small increase in average runtime.   
+In addition, though, Action films themselves are getting longer in runtime - also by a 6 minutes average. One explanation is related to the [second limitation](#gentypes): there are various subtypes of Action movies, so perhaps longer-running subtypes have become more frequent than before, thereby increasing the average runtime for all Action movies. Post-credit scenes, which are now a commonplace element of franchise movies, may also be responsible for a small increase in average runtime. 
 
 <!-- The addition of post-credit scenes in almost every franchise movie now might account for a portion of that increase, but I'm sure there is more at play here.   -->
 
@@ -1072,12 +1363,12 @@ More limitations are described [here](#fulllimitations).
 
 ### Closing Thoughts
 #### We used to be a people that watched 100-minute-long Comedies in a Cineplex Odeon theater.
-From 2009 to 2015, we had two Grown Ups and three Hangover films grace our cinemas, all of which were between 100 and 102 minutes in runtime, and made \$200 to \$550 million each. The year 2011 saw two Rom Coms called No Strings Attached and Friends with Benefits release in theaters; they shared the same exact premise and yet both grossed a handsome \$150 million worldwide each. Now, Adam Sandler movies go straight to [Netflix](https://www.indiewire.com/features/general/adam-sandler-netflix-deal-extended-four-movies-1202207433/), The Hangover director is onto his second Joker film, and Romantic Comedies… go straight to [Netflix](https://www.imdb.com/title/tt7374948/) (or [Hulu](https://www.imdb.com/title/tt15218000/), [Prime](https://www.imdb.com/title/tt6462958/), and so on). 
+From 2009 to 2015, we had two Grown Ups and three Hangover films grace our cinemas, all of which were between 100 and 102 minutes in runtime, and made \$200 to \$550 million each. The year 2011 saw two Rom Coms called No Strings Attached and Friends with Benefits release in theaters; they shared the same exact premise and yet both grossed a handsome \$150 million worldwide each. Now, Adam Sandler movies [go straight to Netflix](https://www.indiewire.com/features/general/adam-sandler-netflix-deal-extended-four-movies-1202207433/), The Hangover director is onto his second Joker film, and Romantic Comedies… go straight to [Netflix](https://www.imdb.com/title/tt7374948/) (or [Hulu](https://www.imdb.com/title/tt15218000/), [Prime](https://www.imdb.com/title/tt6462958/), and so on). 
 
 #### Can "smaller" movies make a theatrical comeback? 
-According to a [survey](https://www.thecinemafoundation.org/wp-content/uploads/2023/03/State-of-the-Cinema-Industry-March-2023.pdf) conducted by The Cinema Foundation, people want to watch more comedies in theaters. Anyone But You's box office success is evidence of this sentiment, and we've since seen [other producers](https://www.worldofreel.com/blog/2024/10/24/wuthering-heights) choose theatrical releases over a big Netflix cheque. Moreover, in his Academy Award acceptance speech for writing [American Fiction](https://www.imdb.com/title/tt23561236/), Cord Jefferson called out studios' blockbuster-obsessed nature and advocated "Instead of making one \$200 million movie, try making 10 \$20 million movies". He was met with applause but who knows how earnest. 
+According to a [survey](https://www.thecinemafoundation.org/wp-content/uploads/2023/03/State-of-the-Cinema-Industry-March-2023.pdf) conducted by The Cinema Foundation, people want to watch more comedies in theaters. Anyone But You's box office success is evidence of this sentiment, and we've since seen [other producers](https://www.worldofreel.com/blog/2024/10/24/wuthering-heights) choose theatrical releases over a big Netflix cheque. Moreover, in his Academy Award acceptance speech for writing [American Fiction](https://www.imdb.com/title/tt23561236/), Cord Jefferson called out studios' blockbuster-obsessed nature and advocated "Instead of making one \$200 million movie, try making ten \$20 million movies". He was met with applause but who knows how earnest. 
 
-In the meantime, we can still go out and find a [shorter movie to watch in theaters](https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,&runtime=1,100&now_playing=restrict&sort=boxoffice_gross_us,asc), despite it being less common. Who knows, maybe you can watch two since they're so short. 
+In the meantime, we can still go out and find a [shorter movie to watch in theaters](https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,&runtime=1,100&now_playing=restrict&sort=boxoffice_gross_us,asc), despite them being less common. Who knows, maybe you can watch two since they're so short. 
 
 
 
@@ -1115,20 +1406,73 @@ In the meantime, we can still go out and find a [shorter movie to watch in theat
 
 ## Appendix 
 
-### A1: Defining 'Mainstream', distinguishing between 'Mid-Budget' and 'Blockbuster', and choosing our 'Before' and 'Now' periods {#settingparameters}
+### A1: Glossary
 
 
-###### Mainstream
-I’d consider mainstream movies to be the most accessible to the average moviegoer. The IMDb-provided variable that is most related to accessibility (in my opinion) is movie budget. That is, the greater the budget of a movie, the more I'd expect it to be given a wide theatrical release and be part of “the mainstream culture”. Since there are about 100 movies released in theaters per year (according to [statista](https://www.statista.com/statistics/1400581/number-movies-released-theaters-us-canada/)), I define mainstream movies as those among the top 100 budget films of their given release year.  
+<!-- ###### Mainstream -->
+<!-- I’d consider mainstream movies to be the most accessible to the average moviegoer. The IMDb-provided variable that is most related to accessibility (in my opinion) is movie budget. That is, the greater the budget of a movie, the more I'd expect it to be given a wide theatrical release and be part of “the mainstream culture”. Since there are about 100 movies released in theaters per year (according to [statista](https://www.statista.com/statistics/1400581/number-movies-released-theaters-us-canada/)), I define mainstream movies as those among the top 100 budget films of their given release year.   -->
 
-###### Blockbuster vs Mid-Budget
-To obtain an even split from the 100 Mainstream movies, I define the top 50 budget films of each year as Blockbuster films and the next 50 as Mid-Budget films. That is, for every year considered in the analysis, the hundred movies with the highest budgets will be included. Of those hundred, the fifty with the highest budget will be treated as Blockbusters and the remaining fifty will be treated as Mid-Budget.
+```{r, include = FALSE}
+movie_trait_definitions_df <- data.frame(
+  movie_trait_readable = c("Budget", 
+                                                      "Gross",
+                                                      "Action", 
+                                                      "Non-Action Comedy" 
+                                                      ),
+  definition = c("The budget listed on IMDb.", 
+                                                                       "The US & Canada gross revenue listed on IMDb.",  
+                                                                       "One of the genres listed on IMDb is Action.",
+                                                                       "One of the genres listed on IMDb is Comedy AND none of the genres listed is Action."))
 
-###### 'Before' and 'Now'
-The ‘Before’ period is set to be the years 2009 to 2015. I think these years represent the beginning of the MCU, from their first hits (except Iron Man (2008)) to their first [Avengers](https://www.imdb.com/title/tt0848228/) [films](https://www.imdb.com/title/tt2395427/) (143 and 141 minutes, respectively) in which standalone characters crossed over with each other, grossing billions of dollars and solidifying the 'Universe'. This time also covers Netflix's rise in popularity, and the start of streaming services original programming (which was both [popular](https://www.imdb.com/title/tt1856010/) and [critically acclaimed](https://www.imdb.com/title/tt3502262/)). The ‘Now’ period is 2016 to 2022, with 2020 excluded due to the outlier-like impact COVID-19 had on film that year. This era saw the [peak of the MCU](https://www.imdb.com/title/tt4154796/) (181 minutes), the advent of so many  other [I.P.-based](https://www.imdb.com/title/tt1985949/) [movie](https://www.imdb.com/title/tt3794354/) [universes](https://www.imdb.com/title/tt5034838/), and the ubiquity of streaming services. 
+
+```
+
+```{r, echo = FALSE}
+# datatable(movie_trait_definitions_df %>% select(movie_trait_readable, definition) %>% rename("Movie Trait" = movie_trait_readable, "Definition" = definition), caption = "Table 4: Glossary of Movie Traits", options = list(pageLength = 11), escape = FALSE)
+
+kable(movie_trait_definitions_df %>% select(movie_trait_readable, definition) %>% rename("Movie Trait" = movie_trait_readable, "Definition" = definition), format = "html", table.attr = "style='width:60%;'", caption = "Movie Trait Definitions") %>% 
+  kableExtra::kable_styling()
+```
+
+### A2: List of the Blockbuster and Mid-Budget movies {#listOfMovies}
+
+### Blockbuster movies
+```{r, echo = FALSE}
+ DT::datatable(
+      filtered_data_blockbusters,
+      caption = "Interactive Table 1: The top 50 budget films of each year from 2009 to 2022, excluding 2020",
+      # container = sketch, 
+      rownames = FALSE, 
+      escape = FALSE, 
+      options = list(
+        autoWidth = TRUE,
+        columnDefs = list(list(width = '100px', targets = "_all")),
+        scrollX = TRUE,
+        scrollCollapse = TRUE,
+        pageLength = 5
+      ))
+```
 
 
-### A2: More Limitations {#fulllimitations}
+### Mid-Budget movies
+```{r, echo=FALSE}
+    DT::datatable(
+      filtered_data_midbudget,
+      caption = "Interactive Table 2: The 51st to 100th budget films of each year from 2009 to 2022, excluding 2020",
+      # container = sketch, 
+      rownames = FALSE, 
+      escape = FALSE, 
+      options = list(
+        autoWidth = TRUE,
+        columnDefs = list(list(width = '100px', targets = "_all")),
+        scrollX = TRUE,
+        pageLength = 5
+      ))
+```
+
+
+
+### A3: More Limitations {#fulllimitations}
 
 ##### Generalizing Blockbuster and Mid-Budget films
 The fifty highest budget and the next fifty highest budget films are grouped as Blockbuster and Mid-Budget films, respectively, even though there could be high variation in budget within the two groups. Second, the variation itself may change over time, meaning the fifty highest budget films could represent a different proportion of Hollywood expenses in 2009 than in 2016. That is, if a movie studio’s strategy changes from making a few midsize movies per year to one huge movie, then perhaps the definition for a Blockbuster should change accordingly and cover fewer movies now than before.
@@ -1137,10 +1481,10 @@ The fifty highest budget and the next fifty highest budget films are grouped as 
 The most recent data I have is of 2022, meaning I'm missing a full year of the most recent movies (2023). One year doesn't sound so bad, but the analysis is meant to explore a recent trend so it would've been nice to have the most recent data. 
 
 
-### A3: Results by question
+### A4: Full Results
 
-##### 1. Are Movies Getting Longer
-###### a) Are blockbusters getting longer? {#1a} 
+#### 1. Are Movies Getting Longer
+##### a) Are blockbusters getting longer? {#1a} 
 <font size = "1"> Back to [the questions](#q1). </font>
 
 ```{r, echo = FALSE, include = FALSE}
@@ -1209,7 +1553,7 @@ kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", capti
   kableExtra::kable_styling()
 ```
 
-###### b) Are mid-budget movies getting longer? {#1b} 
+##### b) Are mid-budget movies getting longer? {#1b} 
 <font size = "1"> Back to [the questions](#q1). </font>
 
 ```{r, echo = FALSE, include = FALSE}
@@ -1279,7 +1623,7 @@ kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", capti
   kableExtra::kable_styling()
 ```
 
-###### c) Are Action movies getting longer? {#1c}
+##### c) Are Action movies getting longer? {#1c}
 
 <font size = "1"> Back to [the questions](#q1). </font>
 
@@ -1348,7 +1692,7 @@ kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", capti
   kableExtra::kable_styling()
 ```
 
-###### d) Are Comedy movies getting longer? {#1d}
+##### d) Are Comedy movies getting longer? {#1d}
 <font size = "1"> Back to [the questions](#q1). </font>
 
 ```{r, echo = FALSE, include = FALSE}
@@ -1418,7 +1762,7 @@ kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", capti
 
 ##### 2. Are longer movie types becoming more common than before, and shorter movie types less common
 
-###### a) Are Action movies more present among Blockbusters now than before? {#2a}
+##### a) Are Action movies more present among Blockbusters now than before? {#2a}
 <font size = "1"> Back to [the questions](#q2). </font>
 
 ```{r, echo = FALSE, include = FALSE}
@@ -1486,7 +1830,7 @@ plot_2a <- ggplotly(plot_3d)
 
 plot_2a
 ```
-###### b) are non-Action Comedies less present among Blockbusters now than before? {#2b}
+##### b) are non-Action Comedies less present among Blockbusters now than before? {#2b}
 
 
 ```{r, echo = FALSE}
@@ -1495,7 +1839,7 @@ plot_2b <- ggplotly(plot_3c)
 plot_2b
 ```
 
-###### d) are non-Action Comedies less present among mid-Budget movies now than before? {#2c}
+##### d) are non-Action Comedies less present among mid-Budget movies now than before? {#2c}
 <font size = "1"> Back to [the questions](#q2). </font>
 
 ```{r, echo = FALSE, include = FALSE}
@@ -1564,7 +1908,7 @@ plot_2a <- ggplotly(plot_3d)
 plot_2a
 ```
 
-###### d) are non-Action Comedies less present among mid-Budget movies now than before? {#2d}
+##### d) are non-Action Comedies less present among mid-Budget movies now than before? {#2d}
 
 <font size = "1"> Back to [the questions](#q2). </font>
 
@@ -1576,7 +1920,7 @@ plot_2b
 
 ##### 3. Before --- what movies were preferred and how long were they
 
-###### a) Among top box office performers, Were Action movies more present than non-Action Comedies? {#3a}
+##### a) Among top box office performers, Were Action movies more present than non-Action Comedies? {#3a}
 <font size = "1"> Back to [the questions](#q3). </font>
 
 ```{r, echo = FALSE, include=FALSE}
@@ -1662,7 +2006,7 @@ plot_3a <- ggplotly(plot_2b)
 plot_3a
 ```
 
-###### b) Among mid box office performers, Were Action movies more present than non-Action Comedies? {#3b}
+##### b) Among mid box office performers, Were Action movies more present than non-Action Comedies? {#3b}
 <font size = "1"> Back to [the questions](#q3). </font>
 
 ```{r, echo = FALSE}
@@ -1671,7 +2015,7 @@ plot_3b <- ggplotly(plot_2c)
 plot_3b
 ```
 
-###### c) Were Action movies longer than non-Action Comedies? {#3c}
+##### c) Were Action movies longer than non-Action Comedies? {#3c}
 <font size = "1"> Back to [the questions](#q3). </font>
 
 ```{r, echo = FALSE, include = FALSE}
@@ -1768,7 +2112,7 @@ kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", capti
   kableExtra::kable_styling()
 ```
 
-###### d) Were the top box office performers longer than the mid box office performers? {#3d}
+##### d) Were the top box office performers longer than the mid box office performers? {#3d}
 <font size = "1"> Back to [the questions](#q3). </font>
 
 ```{r, echo = FALSE, include = FALSE}
