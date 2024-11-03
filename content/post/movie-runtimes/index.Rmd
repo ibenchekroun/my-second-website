@@ -1865,3 +1865,4 @@ original_df <- filtered_data_gg %>%
 kable(transposed_df_1, format = "html", table.attr = "style='width:60%;'", caption = "Movie Runtimes of the 1-50 highest grossing vs 51-100 highest grossing films --- 2009-2015") %>%
   kableExtra::kable_styling()
 ```
+
